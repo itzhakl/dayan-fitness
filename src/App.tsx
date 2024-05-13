@@ -1,41 +1,47 @@
-import React, { useEffect, useState } from 'react';
-import Page from './Page';
-import { scroller } from 'react-scroll';
+import React, { useEffect, useRef, useState } from "react";
+import Page from "./Page";
+import { scroller } from "react-scroll";
 
 const App = () => {
-  const [selectedPage, setSelectedPage] = useState<number>(0);
-  const [needScroll, setNeedScroll] = useState<boolean>(false);
+  // const prevScrollY = useRef<number>(0);
+  // const [selectedPage, setSelectedPage] = useState<number>(1);
+  // const [needScroll, setNeedScroll] = useState<boolean>(false);
+  // const scrollerrr = useRef(false);
 
-  useEffect(() => {
-    scroller.scrollTo(selectedPage.toString(), {
-      duration: 500,
-      delay: 1,
-      smooth: true,
-    });
-  }, [selectedPage, needScroll]);
+  // useEffect(() => {
+  //   scroller.scrollTo(selectedPage.toString(), {
+  //     duration: 500,
+  //     delay: 0,
+  //     smooth: true,
+  //   });
+  // }, [scrollerrr]);
+// console.log('renderring page');
 
-  useEffect(() => {
-    window.addEventListener('wheel', () => setNeedScroll(p => !p))
-    // setInterval(() => {
-    //   // setSelectedPage((prevPage) => (prevPage + 1) % 10);
-    //   // scroller.scrollTo(selectedPage.toString(), {
-    //   //   duration: 500,
-    //   //   delay: 1,
-    //   //   smooth: true,
-    //   // });
-    //   // setNeedScroll(p => !p);
-    // }, 2000);
-    return () => {
-      window.removeEventListener('wheel', () => setNeedScroll)
-    }
-  }, [])
+  // useEffect(() => {
+  //   const scrollTo = (event: Event) => {
+  //     console.log('scrolling');
+      
+  //     window.removeEventListener("scrollend", scrollTo);
+  //     scroller.scrollTo(selectedPage.toString(), {
+  //       duration: 10,
+  //       delay: 0,
+  //       smooth: true,
+  //     });
+  //     window.addEventListener("scrollend", scrollTo);
+  //     console.log('scroll end', selectedPage);
+  //   };
+  //   window.addEventListener("scrollend", scrollTo);
+  //   return () => {
+  //     window.removeEventListener("scrollend", scrollTo);
+  //   };
+  // }, []);
 
   const handlePageClick = (pageNumber: number) => {
-    setSelectedPage(pageNumber);
+    // setSelectedPage(pageNumber);
   };
 
   return (
-    <div>
+    <div id="container" style={{overflowY: 'scroll', scrollSnapType: 'y mandatory', height: '100vh', scrollBehavior: "smooth" }}>
       <Page pageNumber={1} color="red" setSelectedPage={handlePageClick} />
       <Page pageNumber={2} color="blue" setSelectedPage={handlePageClick} />
       <Page pageNumber={3} color="green" setSelectedPage={handlePageClick} />

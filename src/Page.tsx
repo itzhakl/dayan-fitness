@@ -18,10 +18,13 @@ const Page = ({ pageNumber, color, setSelectedPage }: Props) => {
         background: color,
         height: '100vh',
         width: '100vw',
-        fontSize: '70px'
+        fontSize: '70px',
+        scrollSnapAlign: 'start' ,   animationDuration: '1s'
       }}
     >
-      <motion.div onViewportEnter={() => setSelectedPage(pageNumber)}>
+      <motion.div
+        // onViewportEnter={() => setSelectedPage(pageNumber)}
+      >
         Page {pageNumber}
       </motion.div>
     </section>
