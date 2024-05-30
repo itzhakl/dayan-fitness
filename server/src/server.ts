@@ -22,7 +22,8 @@ app.use(
 );
 
 // routes
-app.use("/", usersRoutes);
+// app.use("/", usersRoutes);
+// app.use("/", categoriesRoutes);
 app.use("/", categoriesRoutes);
 
 const connectANDlisten = async () => {

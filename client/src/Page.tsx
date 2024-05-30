@@ -1,34 +1,16 @@
-import React from 'react';
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion';
+import WhatsAppAccessComponent from './components/mainContext';
 
-type Props = {
-  pageNumber: number;
-  color: string;
-  setSelectedPage: (page: number) => void;
-}
-
-const Page = ({ pageNumber, color, setSelectedPage }: Props) => {
+const Page = () => {
   return (
-    <section
-      id={`${pageNumber}`}
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        background: color,
-        height: '100vh',
-        width: '100vw',
-        fontSize: '70px',
-        scrollSnapAlign: 'start' ,   animationDuration: '1s'
-      }}
-    >
-      <motion.div
-        // onViewportEnter={() => setSelectedPage(pageNumber)}
-      >
-        Page {pageNumber}
+    <section className="flex items-center justify-center">
+      <motion.div>
+        <div className="">
+          <WhatsAppAccessComponent />
+        </div>
       </motion.div>
     </section>
   );
-}
+};
 
 export default Page;
