@@ -1,6 +1,7 @@
 import User from '../models/User';
 import Product from '../models/Product';
 import Category from '../models/Category';
+// import User from 'models/user';
 
 export const allUsersDal = async () => {
   try {

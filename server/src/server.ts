@@ -1,44 +1,45 @@
-import { loginDal } from "./DAL/usersDAL";
 import express from "express";
-import cors from "cors";
-import usersRoutes from "./routes/usersRoutes";
-// import productsRoutes from './routes/productsRoutes'
-import categoriesRoutes from "./routes/productsRoutes";
-// import cartsRoutes from './routes/cartsRoutes'
-// import authRoutes from './routes/auth';
-import { connect } from "./configs/mongoConfig";
+import session from 'express-session'
 import morgan from "morgan";
-import mongoose from "mongoose";
-// import Product from './models/Product'
+import cors from "cors";
+import { connect } from "./configs/mongoConfig";
+import routes from "./routes/gymBotRoutes";
+import { connectAndQuery } from "./configs/PostgresConfig";
 
 const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Middleware
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(morgan("dev"));
-const PORT = 3000;
-app.use(
-  cors({
-    origin: "*",
-  })
-);
+app.use(cors({ origin: "*" }));
+// הגדרת ההגדרות של הסשן
+app.use(session({
+  secret: 'your_secret_key',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false } // יש להגדיר ל-true במעבר ל-HTTPS
+}));
 
-// routes
-// app.use("/", usersRoutes);
-// app.use("/", categoriesRoutes);
-app.use("/", categoriesRoutes);
+app.set('view engine', 'ejs');
 
-const connectANDlisten = async () => {
+
+// Database connection and server start
+const startServer = async () => {
   try {
-    // await connect()
-    // await client.connect();
-    // await connectDB()
-    // console.log('Connecting to mongodb');
-    // const db = mongoose.connection;
-    // db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+    await connectAndQuery();
+    // await connect();
     app.listen(PORT, () => {
       console.log(`Server is up and running on port: ${PORT}`);
     });
   } catch (err) {
     console.error(err);
+    process.exit(1); // סגור את האפליקציה אם יש שגיאה בחיבור למסד הנתונים
   }
 };
-connectANDlisten();
+
+// Routes
+app.use("/", routes);
+
+startServer();
