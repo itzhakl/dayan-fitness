@@ -4,6 +4,7 @@ import {
 } from '@paypal/react-paypal-js';
 import { FC } from 'react';
 import { completePayment } from '../API/serverRequests';
+import { useNavigate } from 'react-router-dom';
 
 export type OrderInPayPal = {
   orderID: string;
@@ -17,12 +18,13 @@ export type OrderInPayPal = {
 
 interface PayPalProps {
   totalMoney: string;
-  currencyCode: string; // הוספת סוג המטבע לממשק הפרופס
+  currencyCode?: string;
 }
 
-const PayPal: FC<PayPalProps> = ({ totalMoney, currencyCode }) => {
+const PayPal: FC<PayPalProps> = ({ totalMoney, currencyCode = 'ILS' }) => {
+  const Navigate = useNavigate();
   const handleApprove = async(orderData: OrderInPayPal) => {
-    console.log(orderData);
+    Navigate('/bot-access-details');
     await completePayment(orderData);
   };
 

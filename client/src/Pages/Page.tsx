@@ -1,14 +1,14 @@
 import { motion } from 'framer-motion';
-import WhatsAppAccessComponent from './components/mainContext';
+import WhatsAppAccessComponent from '../components/mainContext';
 
 const Page = () => {
   return (
     <section className="flex items-center justify-center">
-      <motion.div>
+      {/* <motion.div>
         <div className="">
           <WhatsAppAccessComponent />
         </div>
-      </motion.div>
+      </motion.div> */}
     </section>
   );
 };

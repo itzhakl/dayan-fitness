@@ -1,15 +1,17 @@
-import PayPal from './components/PayPal';
-import WhatsAppAccessComponent from './components/mainContext';
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import AppRoutes from './Routes/index';
+import NavBar from './components/NavBar';
 
-const App = () => {
+const App: React.FC = () => {
   return (
-    <div dir='rtl' className="max-w-svw flex flex-col min-h-svh items-center justify-center">
-      {/* <Page /> */}
-      {/* <Link/> */}
-      {/* <WhatsAppAccessComponent/> */}
-      <PayPal totalMoney='2' currencyCode='ILS'/>
-    </div>
+    <BrowserRouter>
+      <div className="h-svh bg-gray-100">
+        <NavBar />
+        <AppRoutes />
+      </div>
+    </BrowserRouter>
   );
-};
+}
 
 export default App;

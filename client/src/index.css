@@ -20,6 +20,7 @@
 }
 
 html {
+  direction: rtl;
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
 }
@@ -27,4 +28,14 @@ html {
 .enable-trigger-circle {
     fill: #000000 !important; /* Overrides other styles */
     color: #000000 !important;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
 }
