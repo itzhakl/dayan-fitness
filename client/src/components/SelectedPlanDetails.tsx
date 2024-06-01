@@ -1,4 +1,3 @@
-import React from 'react';
 import { Plan } from '../Types/types';
 import { useAtomValue } from 'jotai';
 import { selectedPlanAtom } from '@/store/atoms';
@@ -7,7 +6,7 @@ interface Props {
   plan: Plan;
 }
 
-const SelectedPlanDetails: React.FC = () => {
+const SelectedPlanDetails = () => {
   const plan = useAtomValue<Plan | undefined>(selectedPlanAtom);
   return ( plan &&
     <div className="mb-4">
