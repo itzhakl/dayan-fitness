@@ -3,6 +3,7 @@ import {
   PayPalButtonsComponentProps,
 } from '@paypal/react-paypal-js';
 import { FC } from 'react';
+import { completePayment } from '../API/serverRequests';
 
 export type OrderInPayPal = {
   orderID: string;
@@ -20,8 +21,9 @@ interface PayPalProps {
 }
 
 const PayPal: FC<PayPalProps> = ({ totalMoney, currencyCode }) => {
-  const handleApprove = (orderData: OrderInPayPal) => {
-    console.log('orderData: ', orderData);
+  const handleApprove = async(orderData: OrderInPayPal) => {
+    console.log(orderData);
+    await completePayment(orderData);
   };
 
   const buttonProps: PayPalButtonsComponentProps = {
@@ -45,7 +47,6 @@ const PayPal: FC<PayPalProps> = ({ totalMoney, currencyCode }) => {
       if (actions.order) {
         const order = await actions.order.capture();
         handleApprove({ ...data, ...order } as OrderInPayPal);
-        console.log(order);
       }
     },
 

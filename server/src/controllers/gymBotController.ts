@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { registerUser, loginUser, createPayment, saveHealthDeclaration, grantBotAccess } from '../services/gymBotService';
+import { registerUser, loginUser, createPayment, saveHealthDeclaration, grantBotAccess, verifyPaymentService } from '../services/gymBotService';
 
 export const register = async (req: Request, res: Response) => {
   try {
@@ -56,6 +56,19 @@ export const healthDeclaration = async (req: Request, res: Response) => {
 export const botAccess = async (req: Request, res: Response) => {
   try {
     await grantBotAccess(req.body);
+    res.status(200).send({ message: 'Bot access granted' });
+  } catch (error) {
+    if (error instanceof Error) {
+      res.status(500).send({ error: error.message });
+    } else {
+      res.status(500).send({ error: 'An unknown error occurred' });
+    }
+  }
+};
+
+export const verifyPayment = async (req: Request, res: Response) => {
+  try {
+    await verifyPaymentService(req.body);
     res.status(200).send({ message: 'Bot access granted' });
   } catch (error) {
     if (error instanceof Error) {

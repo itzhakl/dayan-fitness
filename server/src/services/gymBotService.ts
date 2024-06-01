@@ -4,6 +4,7 @@ import paypal from 'paypal-rest-sdk';
 import User from '../models/UserGymBot';
 import HealthDeclaration from '../models/HealthDeclaration';
 import { config } from 'dotenv';
+import { orderVerification } from '../middleware/somthingToDelete';
 
 config();
 
@@ -94,4 +95,16 @@ export const saveHealthDeclaration = async ({ token, fullName, phone, signature 
 
 export const grantBotAccess = async ({ phone }: { phone: string }) => {
   // Add your bot access logic here
+};
+
+export const verifyPaymentService = async (body: any ) => {
+  const { orderID } = body;
+  console.log({body}, {orderID});
+  try {
+    const data  = await orderVerification(orderID)
+    console.log('success', data);
+  } catch (error) {
+    console.log(error);
+  }
+  
 };

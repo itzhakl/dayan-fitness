@@ -1,7 +1,11 @@
 import express from 'express';
-import { register, login, checkout, healthDeclaration, botAccess } from '../controllers/gymBotController';
+import { register, login, checkout, healthDeclaration, botAccess, verifyPayment } from '../controllers/gymBotController';
 
 const router = express.Router();
+
+router.post('/verifyPayment', verifyPayment);
+
+
 
 router.post('/choosePlan', register);
 
