@@ -5,7 +5,6 @@ import cors from "cors";
 import { connect } from "./configs/mongoConfig";
 import routes from "./routes/gymBotRoutes";
 import { connectAndQuery } from "./configs/PostgresConfig";
-import { authToken } from "./middleware/somthingToDelete";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -25,7 +24,7 @@ app.use(session({
 
 app.set('view engine', 'ejs');
 
-console.log(authToken);
+console.log(process.env.PG_SSL_CA);
 
 // Database connection and server start
 const startServer = async () => {

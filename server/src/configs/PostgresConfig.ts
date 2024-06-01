@@ -21,7 +21,7 @@ const databaseConfig = {
   database: process.env.PG_DATABASE,
   ssl: {
       rejectUnauthorized: true,
-      ca: CaCert(),
+      ca: process.env.PG_SSL_CA,
   },
   max: 20, // מספר החיבורים המרבי בערימה
   idleTimeoutMillis: 30000, // זמן חיבור למסד הנתונים במילישניות כאשר אין שימוש
