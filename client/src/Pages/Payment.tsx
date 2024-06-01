@@ -11,14 +11,14 @@ const Payment: React.FC = () => {
   const paymentAmount = useAtomValue(userDetailsAtom).plan.price;
   const Navigate = useNavigate();
   useEffect(() => {
-    if (!paymentAmount) {
+    if (!paymentAmount || !plan) {
       Navigate('/choose-plan');
     }
   }, []);
   
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded shadow-md">
-      {plan && <SelectedPlanDetails />}
+      <SelectedPlanDetails />
       <div className="text-lg font-bold mb-4">
         <PayPal totalMoney={paymentAmount} />
       </div>
