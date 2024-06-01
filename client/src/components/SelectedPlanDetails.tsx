@@ -1,12 +1,15 @@
 import React from 'react';
 import { Plan } from '../Types/types';
+import { useAtomValue } from 'jotai';
+import { selectedPlanAtom } from '@/store/atoms';
 
 interface Props {
   plan: Plan;
 }
 
-const SelectedPlanDetails: React.FC<Props> = ({ plan }) => {
-  return (
+const SelectedPlanDetails: React.FC = () => {
+  const plan = useAtomValue<Plan | undefined>(selectedPlanAtom);
+  return ( plan &&
     <div className="mb-4">
       <h1 className="text-xl font-bold mb-2">פרטי התוכנית שנבחרה:</h1>
       <p className="text-lg">שם: {plan.name}</p>

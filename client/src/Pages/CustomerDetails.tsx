@@ -25,7 +25,7 @@ const CustomerDetailsPage: React.FC = () => {
 
   return (
     <div className="max-w-md mx-auto mt-8 p-4 border border-gray-200 rounded-md">
-      {plan && <SelectedPlanDetails plan={plan} />}
+      {plan && <SelectedPlanDetails />}
       <CustomerDetailsForm/>
     </div>
   );

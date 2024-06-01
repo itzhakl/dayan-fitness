@@ -1,10 +1,13 @@
 import PayPal from '@/components/PayPal';
 import React, { useEffect } from 'react';
-import { userDetailsAtom } from '@/store/atoms';
+import { selectedPlanAtom, userDetailsAtom } from '@/store/atoms';
 import { useAtomValue } from 'jotai';
 import { useNavigate } from 'react-router-dom';
+import SelectedPlanDetails from '@/components/SelectedPlanDetails';
+import { Plan } from '@/Types/types';
 
 const Payment: React.FC = () => {
+  const plan = useAtomValue<Plan | undefined>(selectedPlanAtom);
   const paymentAmount = useAtomValue(userDetailsAtom).plan.price;
   const Navigate = useNavigate();
   useEffect(() => {
@@ -15,6 +18,7 @@ const Payment: React.FC = () => {
   
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded shadow-md">
+      {plan && <SelectedPlanDetails />}
       <div className="text-lg font-bold mb-4">
         <PayPal totalMoney={paymentAmount} />
       </div>

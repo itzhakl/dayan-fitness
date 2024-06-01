@@ -9,6 +9,7 @@ const initialOptions = {
     'ATCB3Am1hAzH0XI4GYTtrgM49MNwv0Dj5e4x6DxR1eYhbl21-ZndynFTOIvrgm-FkuAabaPeiikP6yC3',
   currency: 'ILS',
   intent: 'capture',
+  locale: 'he_IL'
 };
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

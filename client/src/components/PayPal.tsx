@@ -61,7 +61,7 @@ const PayPal: FC<PayPalProps> = ({ totalMoney, currencyCode = 'ILS' }) => {
     },
   };
 
-  return <PayPalButtons {...buttonProps}  />;
+  return <PayPalButtons {...buttonProps} />;
 };
 
 export default PayPal;
