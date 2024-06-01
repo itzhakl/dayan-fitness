@@ -1,4 +1,4 @@
-import User from '../models/User';
+import User from '../models/UserModel';
 import Product from '../models/Product';
 import Category from '../models/Category';
 

@@ -10,7 +10,7 @@ import {
   // allCartsDal,
 } from "../DAL/usersDAL";
 import { productByIdDal } from "../DAL/productsDAL";
-import { Iuser } from "../models/User";
+import { Iuser } from "../models/UserModel";
 
 import bcrypt from "bcrypt";
 
@@ -131,7 +131,7 @@ export const userCartSrv = async (id: string) => {
   try {
     const data = await userCartDal(id);
     if (!data) throw new Error("dosn't exist");
-    const cartProd = data.items?.map(async (e) => {
+    const cartProd = data.items?.map(async (e: any) => {
       await productByIdDal(e.productId);
     });
     return { data, products: cartProd };

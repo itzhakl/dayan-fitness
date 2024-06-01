@@ -8,7 +8,7 @@ import {
   topFiveCatDal,
   topFiveProdDal,
 } from "../DAL/productsDAL";
-import { Iuser } from "../models/User";
+import { Iuser } from "../models/UserModel";
 
 interface NewUser {
   email: string;

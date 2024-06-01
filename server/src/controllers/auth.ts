@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { tokenArray } from "../middleware/auth";
-import User  from "../models/User";
+import User  from "../models/UserModel";
 // import { getUserByEmail, createUser } from "../services/users";
 
 // User registration
