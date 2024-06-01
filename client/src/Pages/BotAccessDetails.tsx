@@ -13,7 +13,7 @@ const BotAccessDetails: React.FC = () => {
         variant="contained"
         color="success"
         startIcon={<WhatsAppIcon />}
-        onClick={() => window.open('https://wa.me/your-whatsapp-number', '_blank')}
+        onClick={() => window.open('https://wa.me/+972503908171', '_blank')}
         className="mt-4"
       >
         בוא נתחיל כבר מעכשיו
