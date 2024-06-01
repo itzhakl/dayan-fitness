@@ -8,7 +8,7 @@ interface Props {
 
 const SelectedPlanDetails = () => {
   const plan = useAtomValue<Plan | undefined>(selectedPlanAtom);
-  return ( plan &&
+  return ( !plan ? <></> :
     <div className="mb-4">
       <h1 className="text-xl font-bold mb-2">פרטי התוכנית שנבחרה:</h1>
       <p className="text-lg">שם: {plan.name}</p>
