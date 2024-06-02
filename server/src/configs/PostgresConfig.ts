@@ -28,26 +28,27 @@ const databaseConfig = {
   connectionTimeoutMillis: 2000, // זמן המתנה מרבי עבור חיבור חדש (מילישניות)
 };
 
+const pool = new Pool(databaseConfig);
 export const connectAndQuery = async () => {
   try {
     const res = await executeQuery("SELECT VERSION()");
-    console.log(res[0].version);
+    console.log(res.rows[0].version);
   } catch (err) {
     console.error(err);
   }
 }
 
 export const executeQuery = async (query: string, params: any[] = []) => {
-  // const pool = new Pool({Client: Client, ...databaseConfig});
-  const pool = new Pool(databaseConfig);
   try {
     const result = await pool.query(query, params);
-    return result.rows;
+    return result;
   } catch (error) {
     if (error instanceof Error) {
-      throw new Error(`Error executing query: ${error.message}`);
+      console.error(`Error executing query: ${error.message}`);
+      throw new Error('An Error occurred while writing to the database');
     } else {
-      throw new Error(`Unknown Error executing query: ${error}`);
+      console.error(`Unknown error executing query: ${error}`);
+      throw new Error('Unknown Error occurred while writing to the database');
     }
   }
 }

@@ -1,5 +1,13 @@
 import { Request, Response } from 'express';
-import { registerUser, loginUser, createPayment, saveHealthDeclaration, grantBotAccess, verifyPaymentService } from '../services/gymBotService';
+import {
+  registerUser,
+  loginUser,
+  createPayment,
+  saveHealthDeclaration,
+  grantBotAccess,
+  verifyPaymentService,
+  saveUserDetailsService,
+} from "../services/gymBotService";
 
 export const register = async (req: Request, res: Response) => {
   try {
@@ -75,6 +83,19 @@ export const verifyPayment = async (req: Request, res: Response) => {
       res.status(500).send({ error: error.message });
     } else {
       res.status(500).send({ error: 'An unknown error occurred' });
+    }
+  }
+};
+
+export const saveUserDetails = async (req: Request, res: Response) => {
+  try {
+    await saveUserDetailsService(req.body);
+    res.status(200).send({ message: "User details saved" });
+  } catch (error) {
+    if (error instanceof Error) {
+      res.status(500).send({ error: error.message });
+    } else {
+      res.status(500).send({ error: "An unknown error occurred" });
     }
   }
 };

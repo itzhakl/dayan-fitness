@@ -24,8 +24,6 @@ app.use(session({
 
 app.set('view engine', 'ejs');
 
-console.log(process.env.PG_SSL_CA);
-
 // Database connection and server start
 const startServer = async () => {
   try {
