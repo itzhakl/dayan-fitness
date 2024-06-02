@@ -5,14 +5,17 @@ import {
   checkout,
   healthDeclaration,
   botAccess,
-  verifyPayment,
+  completePurchaseController,
   saveUserDetails,
 } from "../controllers/gymBotController";
 
 const router = express.Router();
 
-router.post('/verifyPayment', verifyPayment);
+router.post("/submitForm", saveUserDetails);
 
+router.post('/completePurchase', completePurchaseController);
+
+// router.post('/user-registration', userRegistrationController);
 
 
 router.post('/choosePlan', register);
@@ -23,7 +26,6 @@ router.post('/signForm', register);
 
 router.post('/payment', register);
 
-router.post("/saveUserDetails", saveUserDetails);
 router.post('/register', register);
 
 

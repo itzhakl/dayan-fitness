@@ -5,7 +5,7 @@ import {
   createPayment,
   saveHealthDeclaration,
   grantBotAccess,
-  verifyPaymentService,
+  completePurchaseService,
   saveUserDetailsService,
 } from "../services/gymBotService";
 
@@ -73,19 +73,26 @@ export const botAccess = async (req: Request, res: Response) => {
     }
   }
 };
-
-export const verifyPayment = async (req: Request, res: Response) => {
+export const completePurchaseController = async (req: Request, res: Response) => {
   try {
-    await verifyPaymentService(req.body);
-    res.status(200).send({ message: 'Bot access granted' });
+    await completePurchaseService(req.body);
+    res.status(200).send({ message: 'User registration successful' });
   } catch (error) {
     if (error instanceof Error) {
-      res.status(500).send({ error: error.message });
-    } else {
-      res.status(500).send({ error: 'An unknown error occurred' });
+      
+      console.log("Error in completePurchaseController:", error.message);
+      
+      // Determine the status code based on the error message
+      let statusCode = 500;
+      if (error.message === "Missing required fields") {
+        statusCode = 400; // Bad Request
+      }
+      
+      res.status(statusCode).send({ error: error.message });
     }
   }
 };
+
 
 export const saveUserDetails = async (req: Request, res: Response) => {
   try {

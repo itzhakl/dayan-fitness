@@ -5,6 +5,7 @@ import cors from "cors";
 import { connect } from "./configs/mongoConfig";
 import routes from "./routes/gymBotRoutes";
 import { connectAndQuery } from "./configs/PostgresConfig";
+import { initDB } from "./configs/initDB_PG";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -28,6 +29,7 @@ app.set('view engine', 'ejs');
 const startServer = async () => {
   try {
     await connectAndQuery();
+    // await initDB();
     // await connect();
     app.listen(PORT, () => {
       console.log(`Server is up and running on port: ${PORT}`);

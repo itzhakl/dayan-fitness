@@ -5,8 +5,10 @@ import paypal from "paypal-rest-sdk";
 import User from "../models/UserGymBot";
 import HealthDeclaration from "../models/HealthDeclaration";
 import { config } from "dotenv";
-import { orderVerification } from "../middleware/somthingToDelete";
-import { addUserDetailsDal } from "../DAL/usersBotDAL";
+import { paymentVerification } from "../middleware/somthingToDelete";
+import { addUserDetailsDal, saveUserRegistrationDetailsDal } from "../DAL/usersBotDAL";
+import { UserFromClient, UserToRegist } from "../types/types";
+import { createUserToRegist } from "../utils/utils";
 
 config();
 
@@ -133,21 +135,43 @@ export const grantBotAccess = async ({ phone }: { phone: string }) => {
   // Add your bot access logic here
 };
 
-export const verifyPaymentService = async (body: any) => {
-  const { orderID } = body;
-  console.log({ body }, { orderID });
+export const completePurchaseService = async (body: {userDetails: UserFromClient, paypalDetails: {orderID: string}}) => {
   try {
-    const data = await orderVerification(orderID);
-    console.log("success", data);
+    // Validate the request body
+    if (!body || !body.paypalDetails || !body.paypalDetails.orderID || !body.userDetails) {
+      console.log({body});
+      throw new Error("Missing required fields");
+    }
+    
+    const { paypalDetails: { orderID }, userDetails } = body;
+
+    const verifyPayment = await paymentVerification(orderID);
+    if (verifyPayment) {
+      if (!userDetails || !userDetails.firstName || !userDetails.lastName || !userDetails.phoneNumber || !userDetails.email || !userDetails.userSignature || !userDetails.planPrice || !userDetails.planDuration) {
+        throw new Error("Missing required fields");
+      }
+      const userToRegist = createUserToRegist(userDetails);
+      await saveUserRegistrationDetailsDal(userToRegist);
+    } else {
+      throw new Error(
+        "Something went wrong while verifying the payment. Please try again later."
+      );
+    }
   } catch (error) {
-    console.log(error);
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
+    console.log("Error in completePurchaseService:", error);
+    throw new Error("Something went wrong. Please try again later.");
   }
 };
 
+
 export const saveUserDetailsService = async (body: any) => {
   const { userDetails } = body;
-  const data = await addUserDetailsDal(userDetails);
-  // if (data.status === "COMPLETED") {
-  //   await saveHealthDeclaration(userDetails);
-  // }
+  const { firstName, lastName, phoneNumber, email } = userDetails;
+  if (!firstName || !lastName || !phoneNumber || !email) {
+    throw new Error("Missing required fields");
+  }
+  await addUserDetailsDal(userDetails);
 };
