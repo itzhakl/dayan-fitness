@@ -67,8 +67,8 @@ const StepComponent: React.FC<StepComponentProps> = ({
             onClick={onBack}
             className="flex items-center justify-center rounded bg-gray-500 px-4 py-2 text-white"
           >
-            <span>חזור</span>
             <ArrowForwardIcon className="ml-1" />
+            <span>חזור</span>
           </button>
         )}
       </div>

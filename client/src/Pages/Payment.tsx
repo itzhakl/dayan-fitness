@@ -8,7 +8,7 @@ import { Plan } from '@/Types/types';
 
 const Payment: React.FC = () => {
   const plan = useAtomValue<Plan | undefined>(selectedPlanAtom);
-  const paymentAmount = useAtomValue(userDetailsAtom).plan.price;
+  const paymentAmount = useAtomValue(userDetailsAtom).price;
   const navigate = useNavigate();
 
   useEffect(() => {

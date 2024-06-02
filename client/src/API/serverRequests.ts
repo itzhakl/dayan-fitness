@@ -1,8 +1,16 @@
 import { OrderInPayPal } from "@/components/PayPal";
 
-const submitForm = async (data: any) => {
+const sereverUrl = import.meta.env.VITE_SERVER_URL;
+import { UserDetails } from "@/utils/validation";
+
+const routes = {
+  submitForm: '/submitForm',
+  completePurchase: '/completePurchase',
+}
+
+export const submitForm = async (data: any) => {
   try {
-    const response = await fetch('/api/submit', {
+    const response = await fetch(sereverUrl + routes.submitForm, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -16,14 +24,14 @@ const submitForm = async (data: any) => {
   }
 }
 
-export const completePayment = async (data: OrderInPayPal) => {
+export const completePurchase = async (paypalOrderDetails: OrderInPayPal, userDetails: UserDetails) => {
   try {
-    const response = await fetch('http://localhost:3000/verifyPayment', {
+    const response = await fetch(sereverUrl + routes.completePurchase, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({paypalOrderDetails, userDetails}),
     });
     const result = await response.json();
     return result;

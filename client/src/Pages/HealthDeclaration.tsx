@@ -1,12 +1,12 @@
 import React, { useState, useRef } from 'react';
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { userDetailsAtom } from '@/store/atoms';
 import { useNavigate } from 'react-router-dom';
 import SignatureCanvas from 'react-signature-canvas';
 import 'tailwindcss/tailwind.css';
 
 const HealthDeclaration: React.FC = () => {
-  const [userDetails] = useAtom(userDetailsAtom);
+  const userDetails = useAtomValue(userDetailsAtom);
   const [isChecked, setIsChecked] = useState(false);
   const [signature, setSignature] = useState('');
   const sigCanvas = useRef<SignatureCanvas>(null);

@@ -7,6 +7,7 @@ export const plans: Plan[] = [
     monthlyPrice: '100', // Monthly price is the same as the price for one month
     discount: '0%',
     description: 'תוכנית חודשית מתחדשת אוטומטית כל חודש',
+    duration: '1',
   },
   {
     name: 'שלושה חודשים',
@@ -15,6 +16,7 @@ export const plans: Plan[] = [
     discount: '10%',
     description:
       'תוכנית שלושת החודשים מתחדשת אוטומטית כל שלושה חודשים ומציעה 10% הנחה',
+    duration: '3',
   },
   {
     name: 'חצי שנה',
@@ -23,6 +25,7 @@ export const plans: Plan[] = [
     discount: '20%',
     description:
       'תוכנית חצי השנה מתחדשת אוטומטית כל שישה חודשים ומציעה 20% הנחה',
+    duration: '6',
   },
   {
     name: 'שנה',
@@ -30,5 +33,6 @@ export const plans: Plan[] = [
     monthlyPrice: (840 / 12).toFixed(2), // Monthly price for twelve months
     discount: '30%',
     description: 'תוכנית השנתית מתחדשת אוטומטית כל שנה ומציעה 30% הנחה',
+    duration: '12',
   },
 ];

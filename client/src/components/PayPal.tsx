@@ -3,8 +3,10 @@ import {
   PayPalButtonsComponentProps,
 } from '@paypal/react-paypal-js';
 import { FC } from 'react';
-import { completePayment } from '../API/serverRequests';
+import { completePurchase } from '../API/serverRequests';
 import { useNavigate } from 'react-router-dom';
+import { userDetailsAtom } from '@/store/atoms';
+import { useAtomValue } from 'jotai';
 
 export type OrderInPayPal = {
   orderID: string;
@@ -22,10 +24,11 @@ interface PayPalProps {
 }
 
 const PayPal: FC<PayPalProps> = ({ totalMoney, currencyCode = 'ILS' }) => {
+  const userDetails = useAtomValue(userDetailsAtom);
   const Navigate = useNavigate();
   const handleApprove = async(orderData: OrderInPayPal) => {
+    await completePurchase(orderData, userDetails);
     Navigate('/bot-access-details');
-    await completePayment(orderData);
   };
 
   const buttonProps: PayPalButtonsComponentProps = {

@@ -4,6 +4,7 @@ export type Plan = {
   monthlyPrice: string;
   discount: string;
   description: string;
+  duration: string;
 }
 
 export type User = {
@@ -11,5 +12,7 @@ export type User = {
   lastName: string;
   email: string;
   phoneNumber: string;
-  plan: Plan;
+  userSignature: string;
+  price: string;
+  duration: string;
 }

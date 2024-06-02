@@ -11,7 +11,7 @@ const ChoosePlan: React.FC = () => {
 
   const handlePlanClick = (plan: Plan) => {
     setSelectedPlan(plan);
-    setUserDetails((prev) => ({ ...prev, plan }));
+    setUserDetails((prev) => ({ ...prev, price: plan.price, duration: plan.duration }));
   };
 
   return (

@@ -8,11 +8,7 @@ export const userDetailsAtom = atom<User>({
   lastName: '',
   email: '',
   phoneNumber: '',
-  plan: {
-    name: '',
-    price: '',
-    monthlyPrice: '',
-    discount: '',
-    description: '',
-  }
+  userSignature: '',
+  price: '',
+  duration: '',
 })

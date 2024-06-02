@@ -16,10 +16,6 @@ const CustomerDetailsPage: React.FC = () => {
   useEffect(() => {
     if (!plan) {
       navigate('/choose-plan');
-    } else {
-      // setUserDetails(prev => {
-      //   return { ...prev, plan: plan }
-      // })
     }
   });
 
