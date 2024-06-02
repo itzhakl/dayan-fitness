@@ -18,11 +18,11 @@ const Payment: React.FC = () => {
   }, [paymentAmount, plan, navigate]);
 
   return (
-    <div className="mx-auto mt-10 max-w-md rounded border border-gray-300 bg-white p-6 shadow-md">
+    <div className="mx-auto mt-10 max-w-md rounded border border-gray-300 p-6 shadow-md">
       <div className="mb-4 border-b border-gray-300 pb-4 text-center">
         <SelectedPlanDetails />
       </div>
-      <div className="mb-4 text-center text-lg font-bold">
+      <div className="mb-4 text-center text-lg font-bold bg-white rounded-xl">
         <h3 className="mb-2 text-xl">סכום לתשלום:</h3>
         <p>₪{paymentAmount}</p>
         <div className="flex justify-center">

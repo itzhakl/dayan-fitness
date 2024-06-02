@@ -7,7 +7,7 @@ const SelectedPlanDetails = () => {
   return !plan ? (
     <></>
   ) : (
-    <div className="mb-4 rounded border border-gray-300 bg-white p-4 shadow-md">
+    <div className="mb-4 rounded border border-gray-300 bg-white p-4 shadow-md rounded-xl">
       <h1 className="mb-4 text-2xl font-bold">פרטי התוכנית שנבחרה</h1>
       <div className="grid grid-cols-1 gap-4">
         <div className="rounded border border-gray-300 p-4 shadow">

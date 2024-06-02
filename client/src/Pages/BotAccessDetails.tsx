@@ -4,7 +4,7 @@ import { Button } from '@mui/material';
 
 const BotAccessDetails: React.FC = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-r from-blue-500 to-green-500 p-4">
+    <div className="flex min-h-screen items-center justify-center p-4">
       <div className="mx-auto max-w-md rounded-lg bg-white p-8 text-center shadow-lg">
         <h2 className="mb-4 text-2xl font-bold text-blue-600">
           תודה על רכישת הבוט שלנו!

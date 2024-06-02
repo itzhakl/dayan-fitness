@@ -32,7 +32,7 @@ const HealthDeclaration: React.FC = () => {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-r from-green-400 to-blue-500 p-6">
+    <div className="flex min-h-screen items-center justify-center p-6">
       <div className="mx-auto max-w-md rounded-lg bg-white p-8 text-center shadow-lg">
         <h2 className="mb-4 text-2xl font-bold text-green-700">הצהרת בריאות</h2>
         <p className="mb-6 text-gray-700">

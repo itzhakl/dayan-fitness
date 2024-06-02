@@ -9,7 +9,7 @@ const Home: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center p-8 bg-gray-100 min-h-screen">
+    <div className="flex flex-col items-center justify-center p-8 min-h-screen">
       <div className="text-center max-w-lg bg-white p-6 rounded-lg shadow-lg">
         <h1 className="text-5xl font-extrabold mb-6 text-blue-600">
           קבל מאמן כושר אישי בבוט
