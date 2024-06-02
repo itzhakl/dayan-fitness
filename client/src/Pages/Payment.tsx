@@ -9,20 +9,26 @@ import { Plan } from '@/Types/types';
 const Payment: React.FC = () => {
   const plan = useAtomValue<Plan | undefined>(selectedPlanAtom);
   const paymentAmount = useAtomValue(userDetailsAtom).plan.price;
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (!paymentAmount || !plan) {
-      Navigate('/choose-plan');
+      navigate('/choose-plan');
     }
-  }, []);
-  
+  }, [paymentAmount, plan, navigate]);
+
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded shadow-md">
-      <SelectedPlanDetails />
-      <div className="text-lg font-bold mb-4">
-        <PayPal totalMoney={paymentAmount} />
+    <div className="mx-auto mt-10 max-w-md rounded border border-gray-300 bg-white p-6 shadow-md">
+      <div className="mb-4 border-b border-gray-300 pb-4 text-center">
+        <SelectedPlanDetails />
       </div>
-      {/* <p>העמוד לתשלום כאן.</p> */}
+      <div className="mb-4 text-center text-lg font-bold">
+        <h3 className="mb-2 text-xl">סכום לתשלום:</h3>
+        <p>₪{paymentAmount}</p>
+        <div className="flex justify-center">
+          <PayPal totalMoney={paymentAmount} />
+        </div>
+      </div>
     </div>
   );
 };

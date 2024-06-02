@@ -9,6 +9,7 @@ const CustomerDetails = lazy(() => import('../Pages/CustomerDetails'));
 const HealthDeclaration = lazy(() => import('../Pages/HealthDeclaration'));
 const Payment = lazy(() => import('../Pages/Payment'));
 const BotAccessDetails = lazy(() => import('../Pages/BotAccessDetails'));
+const LoadingSpinner = lazy(() => import('../Pages/LoadingSpinner'));
 const NotFound = lazy(() => import('../Pages/NotFound'));
 
 // Define route configuration
@@ -20,6 +21,7 @@ const routesConfig: RouteObject[] = [
   { path: '/health-declaration', element: React.createElement(HealthDeclaration) },
   { path: '/payment', element: React.createElement(Payment) },
   { path: '/bot-access-details', element: React.createElement(BotAccessDetails) },
+  { path: '/loading-spinner', element: React.createElement(LoadingSpinner) },
   { path: '*', element: React.createElement(NotFound) },
 ];
 

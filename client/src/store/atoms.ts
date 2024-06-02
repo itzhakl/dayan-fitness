@@ -11,6 +11,7 @@ export const userDetailsAtom = atom<User>({
   plan: {
     name: '',
     price: '',
+    monthlyPrice: '',
     discount: '',
     description: '',
   }

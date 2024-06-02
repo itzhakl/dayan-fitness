@@ -1,8 +1,11 @@
-import React from 'react';
-import { ArrowBack as ArrowBackIcon, ArrowForward as ArrowForwardIcon } from '@mui/icons-material';
+import React, { useRef, useEffect } from 'react';
+import {
+  ArrowBack as ArrowBackIcon,
+  ArrowForward as ArrowForwardIcon,
+} from '@mui/icons-material';
 
 interface StepComponentProps {
-  label: string;
+  description: string;
   name: string;
   value: string;
   error?: string;
@@ -12,27 +15,62 @@ interface StepComponentProps {
   step: number;
 }
 
-const StepComponent: React.FC<StepComponentProps> = ({ label, name, value, error, onChange, onNext, onBack, step }) => {
+const StepComponent: React.FC<StepComponentProps> = ({
+  description,
+  name,
+  value,
+  error,
+  onChange,
+  onNext,
+  onBack,
+  step,
+}) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [step]);
+
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      onNext();
+    }
+  };
+
   return (
     <div>
-      <label className="block mb-2 text-sm font-bold text-gray-700">{label}</label>
+      <label className="mb-2 block text-sm font-bold text-gray-700">
+        {description}
+      </label>
       <input
+        ref={inputRef}
         type="text"
         name={name}
         value={value}
         onChange={onChange}
-        className="w-full px-3 py-2 mb-1 border rounded"
+        onKeyPress={handleKeyPress}
+        className="mb-1 w-full rounded border px-3 py-2"
       />
-      {error && <p className="text-red-500 text-xs">{error}</p>}
-      <div className="flex justify-between mt-4">
+      {error && <p className="text-xs text-red-500">{error}</p>}
+      <div className="mt-4 flex flex-row-reverse justify-between">
+        <button
+          onClick={onNext}
+          className="flex items-center justify-center rounded bg-blue-500 px-4 py-2 text-white"
+        >
+          <span>המשך</span>
+          <ArrowBackIcon className="mr-1" />
+        </button>
         {step > 0 && (
-          <button onClick={onBack} className="px-4 py-2 bg-gray-500 text-white rounded flex items-center justify-center">
-            <ArrowForwardIcon className="ml-1" /> חזור
+          <button
+            onClick={onBack}
+            className="flex items-center justify-center rounded bg-gray-500 px-4 py-2 text-white"
+          >
+            <span>חזור</span>
+            <ArrowForwardIcon className="ml-1" />
           </button>
         )}
-        <button onClick={onNext} className="px-4 py-2 bg-blue-500 text-white rounded flex items-center justify-center">
-          <ArrowBackIcon className="mr-1" /> המשך
-        </button>
       </div>
     </div>
   );
