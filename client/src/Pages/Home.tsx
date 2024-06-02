@@ -9,22 +9,25 @@ const Home: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center p-8">
-      <div className="text-center max-w-md">
-        <h1 className="text-4xl font-bold mb-4">
+    <div className="flex flex-col items-center justify-center p-8 bg-gray-100 min-h-screen">
+      <div className="text-center max-w-lg bg-white p-6 rounded-lg shadow-lg">
+        <h1 className="text-5xl font-extrabold mb-6 text-blue-600">
           קבל מאמן כושר אישי בבוט
         </h1>
-        <p className="text-lg mb-6">
-          הבוט שלנו יציע לך תוכניות אימונים מותאמות אישית, יעקוב אחרי ההתקדמות שלך וייתן לך תמיכה רציפה.
+        <p className="text-lg mb-6 text-gray-700">
+          הבוט המתקדם שלנו יציע לך תוכניות אימונים מותאמות אישית, יעקוב אחרי ההתקדמות שלך וייתן לך תמיכה רציפה בכל שלב בדרך.
         </p>
-        <p className="text-md mb-8">
-          כל זה במרחק קליק אחד בלבד! הצטרף לאלפי לקוחות מרוצים וקבל את גוף החלומות שלך.
+        <p className="text-md mb-8 text-gray-600">
+          דמיין לעצמך תוכנית אימונים שכולה מותאמת במיוחד עבורך, ללא הצורך לצאת מהבית. תקבל עדכונים שוטפים על ההתקדמות שלך ותוכל ליהנות מתמיכה מקצועית בזמן אמת.
+        </p>
+        <p className="text-md mb-8 text-gray-600">
+          כל זה במרחק כמה קליקים בלבד! הצטרף לאלפי לקוחות מרוצים שכבר השיגו את גוף החלומות שלהם בעזרת הבוט שלנו. אל תבזבז עוד זמן - התחל את השינוי שלך היום!
         </p>
         <button
           onClick={handleButtonClick}
-          className="mt-4 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300"
+          className="mt-4 bg-blue-500 text-white py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-300 text-xl font-semibold"
         >
-          קנה עכשיו
+          הצטרף עכשיו
         </button>
       </div>
     </div>
