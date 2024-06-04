@@ -11,6 +11,6 @@ export const userDetailsAtom = atom<User>({
   email: '',
   phoneNumber: '',
   userSignature: '',
-  price: '',
-  duration: '',
-})
+  planPrice: '',
+  planDuration: '',
+});

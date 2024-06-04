@@ -41,9 +41,8 @@ const useCustomerDetailsForm = () => {
   };
 
   const handleSubmit = () => {
-    console.log('שליחת פרטים:', userDetails);
+    // console.log('שליחת פרטים:', userDetails);
     setCurrentPage('health-declaration');
-    // navigate('/health-declaration');
   };
 
 const steps = [

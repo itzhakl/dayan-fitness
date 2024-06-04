@@ -14,13 +14,12 @@ const CustomerDetailsPage: React.FC = () => {
   const plan = useAtomValue(selectedPlanAtom);
   const setUserDetails = useSetAtom(userDetailsAtom);
   // const navigate = useNavigate();
-  console.log(plan);
   useEffect(() => {
     if (!plan) {
       setCurrentPage('choose-plan');
       // navigate('/choose-plan');
     }
-  });
+  }, []);
 
   return (
     <div className="max-w-md flex justify-center items-center h-svh mx-auto">

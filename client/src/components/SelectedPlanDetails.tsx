@@ -20,7 +20,7 @@ const SelectedPlanDetails = () => {
         </div>
         <div className="rounded border border-gray-300 p-4 shadow">
           <p className="text-lg font-semibold">מחיר כולל:</p>
-          <p className="text-lg">{plan.price} ₪</p>
+          <p className="text-lg">{plan.planPrice} ₪</p>
         </div>
       </div>
     </div>

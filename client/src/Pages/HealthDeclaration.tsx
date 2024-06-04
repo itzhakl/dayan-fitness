@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { useAtomValue, useSetAtom } from 'jotai';
+import { useAtom, useSetAtom } from 'jotai';
 import { currentPageAtom, userDetailsAtom } from '@/store/atoms';
 // import { useNavigate } from 'react-router-dom';
 import SignatureCanvas from 'react-signature-canvas';
@@ -7,7 +7,7 @@ import 'tailwindcss/tailwind.css';
 
 const HealthDeclaration: React.FC = () => {
   const setCurrentPage = useSetAtom(currentPageAtom);
-  const userDetails = useAtomValue(userDetailsAtom);
+  const [userDetails, setUserDetails] = useAtom(userDetailsAtom);
   const [isChecked, setIsChecked] = useState(false);
   const [signature, setSignature] = useState('');
   const sigCanvas = useRef<SignatureCanvas>(null);
@@ -24,6 +24,7 @@ const HealthDeclaration: React.FC = () => {
 
   const handleSaveSignature = () => {
     setSignature(sigCanvas.current?.getTrimmedCanvas().toDataURL() || '');
+    setUserDetails((prev) => ({ ...prev, userSignature: signature }));
   };
 
   const handleSubmit = () => {

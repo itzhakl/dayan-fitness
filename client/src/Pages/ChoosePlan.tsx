@@ -11,7 +11,7 @@ const ChoosePlan: React.FC = () => {
 
   const handlePlanClick = (plan: Plan) => {
     setSelectedPlan(plan);
-    setUserDetails((prev) => ({ ...prev, price: plan.price, duration: plan.duration }));
+    setUserDetails((prev) => ({ ...prev, planPrice: plan.planPrice, planDuration: plan.planDuration }));
   };
 
   return (
@@ -35,7 +35,7 @@ const ChoosePlan: React.FC = () => {
               tabIndex={0}
             >
               <h2 className="mb-2 text-2xl font-bold">{plan.name}</h2>
-              <p className="mb-2 text-xl font-semibold">{plan.price}₪</p>
+              <p className="mb-2 text-xl font-semibold">{plan.planPrice}₪</p>
               <p className="mb-4 text-lg font-semibold text-gray-600">
                 ({plan.monthlyPrice}₪ לחודש)
               </p>

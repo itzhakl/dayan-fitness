@@ -9,26 +9,28 @@ import { Plan } from '@/Types/types';
 const Payment: React.FC = () => {
   const setCurrentPage = useSetAtom(currentPageAtom);
   const plan = useAtomValue(selectedPlanAtom);
-  const paymentAmount = useAtomValue(userDetailsAtom).price;
+  const userDetails = useAtomValue(userDetailsAtom);
   // const navigate = useNavigate();
 
   useEffect(() => {
-    if (!paymentAmount || !plan) {
+    if (!userDetails.planPrice || !plan) {
+      console.log({ userDetails, plan });
+
       setCurrentPage('choose-plan');
       // navigate('/choose-plan');
     }
-  }, [paymentAmount, plan]);
+  }, [userDetails, plan]);
 
   return (
     <div className="mx-auto max-w-lg rounded p-6">
       <div className="mb-4 border-b border-gray-300 pb-4 text-center">
         <SelectedPlanDetails />
       </div>
-      <div className="mb-4 text-center text-lg font-bold bg-white rounded-xl">
+      <div className="mb-4 rounded-xl bg-white text-center text-lg font-bold">
         <h3 className="mb-2 text-xl">סכום לתשלום:</h3>
-        <p>₪{paymentAmount}</p>
+        <p>₪{userDetails.planPrice}</p>
         <div className="flex justify-center">
-          <PayPal totalMoney={paymentAmount} />
+          <PayPal totalMoney={userDetails.planPrice} />
         </div>
       </div>
     </div>

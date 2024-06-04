@@ -1,11 +1,11 @@
 export type Plan = {
   name: string;
-  price: string;
+  description: string;
   monthlyPrice: string;
   discount: string;
-  description: string;
-  duration: string;
-}
+  planPrice: string;
+  planDuration: string;
+};
 
 export type User = {
   firstName: string;
@@ -13,6 +13,6 @@ export type User = {
   email: string;
   phoneNumber: string;
   userSignature: string;
-  price: string;
-  duration: string;
-}
+  planPrice: string;
+  planDuration: string;
+};
