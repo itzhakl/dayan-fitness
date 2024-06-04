@@ -1,24 +1,26 @@
 import PayPal from '@/components/PayPal';
 import React, { useEffect } from 'react';
-import { selectedPlanAtom, userDetailsAtom } from '@/store/atoms';
-import { useAtomValue } from 'jotai';
-import { useNavigate } from 'react-router-dom';
+import { currentPageAtom, selectedPlanAtom, userDetailsAtom } from '@/store/atoms';
+import { useAtomValue, useSetAtom } from 'jotai';
+// import { useNavigate } from 'react-router-dom';
 import SelectedPlanDetails from '@/components/SelectedPlanDetails';
 import { Plan } from '@/Types/types';
 
 const Payment: React.FC = () => {
-  const plan = useAtomValue<Plan | undefined>(selectedPlanAtom);
+  const setCurrentPage = useSetAtom(currentPageAtom);
+  const plan = useAtomValue(selectedPlanAtom);
   const paymentAmount = useAtomValue(userDetailsAtom).price;
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     if (!paymentAmount || !plan) {
-      navigate('/choose-plan');
+      setCurrentPage('choose-plan');
+      // navigate('/choose-plan');
     }
-  }, [paymentAmount, plan, navigate]);
+  }, [paymentAmount, plan]);
 
   return (
-    <div className="mx-auto mt-10 max-w-md rounded border border-gray-300 p-6 shadow-md">
+    <div className="mx-auto max-w-lg rounded p-6">
       <div className="mb-4 border-b border-gray-300 pb-4 text-center">
         <SelectedPlanDetails />
       </div>

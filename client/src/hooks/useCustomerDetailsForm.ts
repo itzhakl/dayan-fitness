@@ -1,14 +1,15 @@
 import { useState } from 'react';
-import { useAtom } from 'jotai';
-import { userDetailsAtom } from '@/store/atoms';
-import { useNavigate } from 'react-router-dom';
+import { useAtom, useSetAtom } from 'jotai';
+import { currentPageAtom, userDetailsAtom } from '@/store/atoms';
+// import { useNavigate } from 'react-router-dom';
 import { UserDetails, Errors, validateInput } from '../utils/validation';
 
 const useCustomerDetailsForm = () => {
+  const setCurrentPage = useSetAtom(currentPageAtom);
   const [step, setStep] = useState<number>(0);
   const [userDetails, setUserDetails] = useAtom(userDetailsAtom);
   const [errors, setErrors] = useState<Errors>({});
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -41,7 +42,8 @@ const useCustomerDetailsForm = () => {
 
   const handleSubmit = () => {
     console.log('שליחת פרטים:', userDetails);
-    navigate('/health-declaration');
+    setCurrentPage('health-declaration');
+    // navigate('/health-declaration');
   };
 
 const steps = [

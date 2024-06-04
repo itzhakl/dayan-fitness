@@ -1,11 +1,11 @@
 import { Plan } from '@/Types/types';
-import { selectedPlanAtom, userDetailsAtom } from '@/store/atoms';
+import { currentPageAtom, selectedPlanAtom, userDetailsAtom } from '@/store/atoms';
 import { plans } from '@/store/plans';
 import { useAtom, useSetAtom } from 'jotai';
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const ChoosePlan: React.FC = () => {
+  const setCurrentPage = useSetAtom(currentPageAtom);
   const [selectedPlan, setSelectedPlan] = useAtom(selectedPlanAtom);
   const setUserDetails = useSetAtom(userDetailsAtom);
 
@@ -15,7 +15,7 @@ const ChoosePlan: React.FC = () => {
   };
 
   return (
-    <div className="flex w-full flex-col items-center justify-center p-8">
+    <div className="flex flex-col min-h-svh items-center justify-center p-8">
       <div className="mx-auto w-full max-w-screen-lg text-center">
         <h1 className="mb-4 text-4xl font-bold">בחר תוכנית</h1>
         <p className="mb-6 text-lg">
@@ -26,11 +26,10 @@ const ChoosePlan: React.FC = () => {
             <div
               onClick={() => handlePlanClick(plan)}
               key={plan.name}
-              className={`transform cursor-pointer rounded-lg p-6 text-center shadow-lg transition duration-300 ease-in-out hover:scale-105 ${
-                plan.name === selectedPlan?.name
+              className={`transform cursor-pointer rounded-lg p-6 text-center shadow-lg transition duration-300 ease-in-out hover:scale-105 ${plan.name === selectedPlan?.name
                   ? 'bg-blue-500 text-white'
                   : 'bg-white'
-              }`}
+                }`}
               aria-label={`בחר תוכנית ${plan.name}`}
               role="button"
               tabIndex={0}
@@ -48,11 +47,11 @@ const ChoosePlan: React.FC = () => {
           ))}
         </div>
       </div>
-      <Link to="/customer-details">
-        <button className="fixed bottom-4 left-1/2 -translate-x-1/2 transform rounded-lg bg-blue-600 px-4 py-2 text-white transition duration-300 hover:bg-blue-700 md:static md:mt-4">
+      <div className="fixed w-svw flex justify-center bottom-4 md:static md:mt-4">
+        <button onClick={() => setCurrentPage('customer-details')} className="bg-blue-600 rounded-lg transform transition duration-300 ease-in-out hover:scale-105 px-4 py-2 text-white hover:bg-blue-700">
           בחר תוכנית
         </button>
-      </Link>
+      </div>
     </div>
   );
 };

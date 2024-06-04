@@ -2,25 +2,28 @@
 
 import React, { useEffect, useState } from 'react';
 import { Plan } from '../Types/types';
-import { Link, useNavigate } from 'react-router-dom';
+// import { Link, useNavigate } from 'react-router-dom';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { selectedPlanAtom, userDetailsAtom } from '@/store/atoms';
+import { currentPageAtom, selectedPlanAtom, userDetailsAtom } from '@/store/atoms';
 import SelectedPlanDetails from '@/components/SelectedPlanDetails';
 import CustomerDetailsForm from '@/components/CustomerDetailsForm';
 
 const CustomerDetailsPage: React.FC = () => {
-  const plan = useAtomValue<Plan | undefined>(selectedPlanAtom);
+  const setCurrentPage = useSetAtom(currentPageAtom);
+
+  const plan = useAtomValue(selectedPlanAtom);
   const setUserDetails = useSetAtom(userDetailsAtom);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   console.log(plan);
   useEffect(() => {
     if (!plan) {
-      navigate('/choose-plan');
+      setCurrentPage('choose-plan');
+      // navigate('/choose-plan');
     }
   });
 
   return (
-    <div className="max-w-md mx-auto mt-8 p-4 border border-gray-200 rounded-md">
+    <div className="max-w-md flex justify-center items-center h-svh mx-auto">
       {/* <SelectedPlanDetails /> */}
       <CustomerDetailsForm/>
     </div>

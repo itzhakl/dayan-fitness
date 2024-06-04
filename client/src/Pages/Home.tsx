@@ -1,15 +1,19 @@
+import { currentPageAtom } from '@/store/atoms';
+import { useSetAtom } from 'jotai';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 const Home: React.FC = () => {
-  const navigate = useNavigate();
+  const setCurrentPage = useSetAtom(currentPageAtom);
+  // const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    navigate('/choose-plan');
+    setCurrentPage('choose-plan');
+    // navigate('/choose-plan');
   }
 
   return (
-    <div className="flex flex-col items-center justify-center p-8 min-h-screen">
+    <div className="flex flex-col items-center justify-center p-8 min-h-svh">
       <div className="text-center max-w-lg bg-white p-6 rounded-lg shadow-lg">
         <h1 className="text-5xl font-extrabold mb-6 text-blue-600">
           קבל מאמן כושר אישי בבוט

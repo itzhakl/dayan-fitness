@@ -1,16 +1,17 @@
 import React, { useState, useRef } from 'react';
-import { useAtomValue } from 'jotai';
-import { userDetailsAtom } from '@/store/atoms';
-import { useNavigate } from 'react-router-dom';
+import { useAtomValue, useSetAtom } from 'jotai';
+import { currentPageAtom, userDetailsAtom } from '@/store/atoms';
+// import { useNavigate } from 'react-router-dom';
 import SignatureCanvas from 'react-signature-canvas';
 import 'tailwindcss/tailwind.css';
 
 const HealthDeclaration: React.FC = () => {
+  const setCurrentPage = useSetAtom(currentPageAtom);
   const userDetails = useAtomValue(userDetailsAtom);
   const [isChecked, setIsChecked] = useState(false);
   const [signature, setSignature] = useState('');
   const sigCanvas = useRef<SignatureCanvas>(null);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
@@ -27,12 +28,13 @@ const HealthDeclaration: React.FC = () => {
 
   const handleSubmit = () => {
     if (isChecked && signature) {
-      navigate('/payment');
+      setCurrentPage('payment');
+      // navigate('/payment');
     }
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center p-6">
+    <div className="flex min-h-svh items-center justify-center p-6">
       <div className="mx-auto max-w-md rounded-lg bg-white p-8 text-center shadow-lg">
         <h2 className="mb-4 text-2xl font-bold text-green-700">הצהרת בריאות</h2>
         <p className="mb-6 text-gray-700">

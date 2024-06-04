@@ -18,7 +18,7 @@ const CustomerDetailsForm: React.FC = () => {
   } = useCustomerDetailsForm();
 
   return (
-    <div className="mx-auto mt-10 max-w-lg rounded-lg bg-white p-8 shadow-lg">
+    <div className="mx-auto max-w-lg rounded-lg bg-white p-8 shadow-lg">
       <h1 className="mb-6 text-center text-2xl font-bold">טופס פרטי לקוח</h1>
       <ProgressBar progress={progress} />
       {step < 4 ? (
