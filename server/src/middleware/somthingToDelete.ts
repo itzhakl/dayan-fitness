@@ -1,9 +1,7 @@
-import { config } from 'dotenv';
-
-config();
-
-export const authToken = Buffer.from(`${process.env.CLIENT_ID}:${process.env.CLIENT_SECRET}`).toString("base64");
 import axios from 'axios';
+import 'dotenv/config';
+
+export const authToken = Buffer.from(`${process.env.PAYPAL_CLIENT_ID}:${process.env.PAYPAL_CLIENT_SECRET}`).toString("base64");
 const headers = {
   "Content-Type": "application/json",
   Authorization: `Basic ${authToken}`,

@@ -9,13 +9,17 @@ import { paymentVerification } from "../middleware/somthingToDelete";
 import { addUserDetailsDal, saveUserRegistrationDetailsDal } from "../DAL/usersBotDAL";
 import { UserFromClient, UserToRegist } from "../types/types";
 import { createUserToRegist } from "../utils/utils";
+import { getOrderDetails } from "./paypalService";
 
 config();
 
-const JWT_SECRET = process.env.JWT_SECRET || "your_jwt_secret";
-const PAYPAL_CLIENT_ID =
-  process.env.PAYPAL_CLIENT_ID || "your_paypal_client_id";
-const PAYPAL_SECRET = process.env.PAYPAL_SECRET || "your_paypal_secret";
+const JWT_SECRET = process.env.JWT_SECRET || "secret";
+const PAYPAL_CLIENT_ID = process.env.PAYPAL_CLIENT_ID;
+const PAYPAL_SECRET = process.env.PAYPAL_CLIENT_SECRET;
+
+if (!PAYPAL_CLIENT_ID || !PAYPAL_SECRET) {
+  throw new Error("Missing PayPal credentials");
+}
 
 paypal.configure({
   mode: "sandbox",
@@ -135,19 +139,22 @@ export const grantBotAccess = async ({ phone }: { phone: string }) => {
   // Add your bot access logic here
 };
 
-export const completePurchaseService = async (body: {userDetails: UserFromClient, paypalDetails: {orderID: string}}) => {
+export const completePurchaseService = async (body: {userDetails: UserFromClient, paypalOrderDetails: {orderID: string}}) => {
   try {
     // Validate the request body
-    if (!body || !body.paypalDetails || !body.paypalDetails.orderID || !body.userDetails) {
-      console.log({body});
+    if (!body || !body.paypalOrderDetails || !body.paypalOrderDetails.orderID || !body.userDetails) {
       throw new Error("Missing required fields");
     }
     
-    const { paypalDetails: { orderID }, userDetails } = body;
+    const { paypalOrderDetails: { orderID }, userDetails } = body;
 
     const verifyPayment = await paymentVerification(orderID);
+    const order = await getOrderDetails(orderID);
+    console.log({ order });
+    
     if (verifyPayment) {
       if (!userDetails || !userDetails.firstName || !userDetails.lastName || !userDetails.phoneNumber || !userDetails.email || !userDetails.userSignature || !userDetails.planPrice || !userDetails.planDuration) {
+        console.log({ userDetails });
         throw new Error("Missing required fields");
       }
       const userToRegist = createUserToRegist(userDetails);

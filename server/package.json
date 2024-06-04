@@ -17,6 +17,7 @@
   "author": "Your Name",
   "license": "MIT",
   "dependencies": {
+    "@paypal/checkout-server-sdk": "^1.0.3",
     "@types/uuid": "^9.0.3",
     "axios": "^1.7.2",
     "bcrypt": "^5.1.1",
@@ -45,6 +46,7 @@
     "@types/jsonwebtoken": "^9.0.6",
     "@types/morgan": "^1.9.9",
     "@types/node": "^20.9.0",
+    "@types/paypal__checkout-server-sdk": "^1.0.8",
     "@types/paypal-rest-sdk": "^1.7.9",
     "@types/pg": "^8.11.6",
     "@types/pg-pool": "^2.0.6",
