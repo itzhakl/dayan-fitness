@@ -1,53 +1,79 @@
 import { Request, Response } from "express";
 import crypto from "crypto";
+import crc32 from "buffer-crc32";
+import fs from "fs/promises";
 
-const PAYPAL_WEBHOOK_ID = process.env.PAYPAL_WEBHOOK_ID || "YOUR_WEBHOOK_ID";
-const PAYPAL_CLIENT_ID = process.env.PAYPAL_CLIENT_ID || "YOUR_CLIENT_ID";
-const PAYPAL_SECRET = process.env.PAYPAL_SECRET || "YOUR_SECRET";
+export const webhookHandler = async (request: Request, response: Response) => {
+  console.log("webhookHandler");
+  
+  const headers = request.headers;
+  const event = JSON.stringify(request.body);
+  const data = request.body;
 
-export const webhookHandler = async (req: Request, res: Response) => {
-    console.log(req.body);
-    
-  const body = req.body;
-  const transmissionId = req.headers["paypal-transmission-id"] as string;
-  const transmissionTime = req.headers["paypal-transmission-time"] as string;
-  const certUrl = req.headers["paypal-cert-url"] as string;
-  const authAlgo = req.headers["paypal-auth-algo"] as string;
-  const transmissionSig = req.headers["paypal-transmission-sig"] as string;
+  console.log(`headers`, headers);
+  console.log(`parsed json`, JSON.stringify(data, null, 2));
+  console.log(`raw event: ${event}`);
 
-  // Step 1: Generate the expected signature
-  const expectedSignature = crypto
-    .createHmac("sha256", PAYPAL_SECRET)
-    .update(
-      transmissionId +
-        transmissionTime +
-        PAYPAL_WEBHOOK_ID +
-        JSON.stringify(body)
-    )
-    .digest("base64");
+  const isSignatureValid = await verifySignature(event, headers);
 
-  // Step 2: Compare the signature
-  if (transmissionSig !== expectedSignature) {
-    return res.status(400).send("Invalid signature");
+  if (isSignatureValid) {
+    console.log('Signature is valid.');
+
+    // Successful receipt of webhook, do something with the webhook data here to process it, e.g. write to database
+    console.log(`Received event`, JSON.stringify(data, null, 2));
+
+  } else {
+    console.log(`Signature is not valid for ${data?.id} ${headers?.['correlation-id']}`);
+    // Reject processing the webhook event. May wish to log all headers+data for debug purposes.
+    response.status(400).send('Signature is not valid');
   }
 
-  // Step 3: Verify the webhook event
-  if (authAlgo !== "SHA256") {
-    return res.status(400).send("Invalid auth algorithm");
-  }
-
-  // Handle the event
-  switch (body.event_type) {
-    case "PAYMENT.SALE.COMPLETED":
-      console.log("Payment completed:", body);
-      break;
-    case "PAYMENT.SALE.DENIED":
-      console.log("Payment denied:", body);
-      break;
-    // Add more cases as needed
-    default:
-      console.log("Unhandled event:", body.event_type);
-  }
-
-  res.status(200).send("Webhook received");
+  // Return a 200 response to mark successful webhook delivery
+  response.sendStatus(200);
 };
+
+
+async function verifySignature(event: any, headers: any) {
+  const transmissionId = headers['paypal-transmission-id']
+  const timeStamp = headers['paypal-transmission-time']
+  const crc = parseInt("0x" + crc32(event).toString('hex')); // hex crc32 of raw event data, parsed to decimal form
+
+  const message = `${transmissionId}|${timeStamp}|${process.env.PAYPAL_WEBHOOK_ID}|${crc}`
+  console.log(`Original signed message ${message}`);
+
+  const certPem = await downloadAndCache(headers['paypal-cert-url'], 'cert.pem');
+
+  // Create buffer from base64-encoded signature
+  const signatureBuffer = Buffer.from(headers['paypal-transmission-sig'], 'base64');
+
+  // Create a verification object
+  const verifier = crypto.createVerify('SHA256');
+
+  // Add the original message to the verifier
+  verifier.update(message);
+
+  return verifier.verify(certPem, signatureBuffer);
+}
+
+async function downloadAndCache(url: string, cacheKey?: string) {
+  if (!cacheKey) {
+    cacheKey = url.replace(/\W+/g, '-')
+  }
+  const filePath = `${'./'}/${cacheKey}`;
+  console.log(`Downloading ${url} to ${filePath}`);
+  
+  // Check if cached file exists
+  const cachedData = await fs.readFile(filePath, 'utf-8').catch(() => null);
+  if (cachedData) {
+    return cachedData;
+  }
+  console.log(`Cached file not found: ${filePath}`);
+  
+
+  // Download the file if not cached
+  const response = await fetch(url);
+  const data = await response.text()
+  await fs.writeFile(filePath, data);
+
+  return data;
+}

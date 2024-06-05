@@ -30,7 +30,7 @@ app.set('view engine', 'ejs');
 // Database connection and server start
 const startServer = async () => {
   try {
-    await connectAndQuery();
+    // await connectAndQuery();
     // await initDB();
     // await connect();
     app.listen(PORT, () => {
