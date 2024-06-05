@@ -3,8 +3,8 @@ import { Plan } from '@/Types/types';
 export const plans: Plan[] = [
   {
     name: 'חודש',
-    planPrice: '100',
-    monthlyPrice: '100', // Monthly price is the same as the price for one month
+    planPrice: '89',
+    monthlyPrice: '89', // Monthly price is the same as the price for one month
     discount: '0%',
     description: 'תוכנית חודשית מתחדשת אוטומטית כל חודש',
     planDuration: '1',

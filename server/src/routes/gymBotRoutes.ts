@@ -8,6 +8,8 @@ import {
   completePurchaseController,
   saveUserDetails,
 } from "../controllers/gymBotController";
+import { webhookHandler } from '../middleware/PayPalWebhook';
+
 
 const router = express.Router();
 
@@ -15,8 +17,9 @@ router.post("/submitForm", saveUserDetails);
 
 router.post('/completePurchase', completePurchaseController);
 
-// router.post('/user-registration', userRegistrationController);
+router.post("/paypal-webhook", webhookHandler);
 
+// router.post('/user-registration', userRegistrationController);
 
 router.post('/choosePlan', register);
 
@@ -26,7 +29,6 @@ router.post('/signForm', register);
 
 router.post('/payment', register);
 
-router.post('/register', register);
 
 
 

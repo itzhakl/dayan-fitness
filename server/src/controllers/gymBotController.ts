@@ -86,6 +86,8 @@ export const completePurchaseController = async (req: Request, res: Response) =>
       let statusCode = 500;
       if (error.message === "Missing required fields") {
         statusCode = 400; // Bad Request
+        console.log(error);
+        
       }
       
       res.status(statusCode).send({ error: error.message });

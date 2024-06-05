@@ -1,9 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useAtom, useSetAtom } from 'jotai';
 import { currentPageAtom, userDetailsAtom } from '@/store/atoms';
-// import { useNavigate } from 'react-router-dom';
 import SignatureCanvas from 'react-signature-canvas';
-import 'tailwindcss/tailwind.css';
 
 const HealthDeclaration: React.FC = () => {
   const setCurrentPage = useSetAtom(currentPageAtom);
@@ -11,7 +9,6 @@ const HealthDeclaration: React.FC = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [signature, setSignature] = useState('');
   const sigCanvas = useRef<SignatureCanvas>(null);
-  // const navigate = useNavigate();
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
@@ -23,14 +20,20 @@ const HealthDeclaration: React.FC = () => {
   };
 
   const handleSaveSignature = () => {
-    setSignature(sigCanvas.current?.getTrimmedCanvas().toDataURL() || '');
-    setUserDetails((prev) => ({ ...prev, userSignature: signature }));
+    const trimmedCanvas = sigCanvas.current?.getCanvas();
+    const signatureDataURL = trimmedCanvas?.toDataURL('image/png');
+    if(signatureDataURL) {
+      setSignature(signatureDataURL);
+      setUserDetails((prev) => ({
+        ...prev,
+        userSignature: signatureDataURL,
+      }));
+    }
   };
 
   const handleSubmit = () => {
     if (isChecked && signature) {
       setCurrentPage('payment');
-      // navigate('/payment');
     }
   };
 

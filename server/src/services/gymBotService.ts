@@ -147,7 +147,6 @@ export const completePurchaseService = async (body: {userDetails: UserFromClient
     }
     
     const { paypalOrderDetails: { orderID }, userDetails } = body;
-
     const verifyPayment = await paymentVerification(orderID);
     const order = await getOrderDetails(orderID);
     console.log({ order });

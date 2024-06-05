@@ -3,6 +3,8 @@ import React, { Suspense } from 'react';
 import { useAtom } from 'jotai';
 import { currentPageAtom } from './store/atoms';
 import Navbar from './components/NavBar';
+import LoadingSpinner from './Pages/LoadingSpinner';
+import PayPal from './components/PayPal';
 
 const Home = React.lazy(() => import('./Pages/Home'));
 const About = React.lazy(() => import('./Pages/About'));
@@ -11,7 +13,6 @@ const CustomerDetails = React.lazy(() => import('./Pages/CustomerDetails'));
 const HealthDeclaration = React.lazy(() => import('./Pages/HealthDeclaration'));
 const Payment = React.lazy(() => import('./Pages/Payment'));
 const BotAccessDetails = React.lazy(() => import('./Pages/BotAccessDetails'));
-const LoadingSpinner = React.lazy(() => import('./Pages/LoadingSpinner'));
 const NotFound = React.lazy(() => import('./Pages/NotFound'));
 
 const App = () => {
@@ -44,7 +45,8 @@ const App = () => {
     <div className='max-w-svw min-h-svh bg-gradient-to-r from-green-400 to-blue-500'>
       <Suspense fallback={<LoadingSpinner />}>
         {/* <Navbar /> */}
-        {renderPage()}
+        {/* {renderPage()} */}
+        <PayPal totalMoney='10'/>
       </Suspense>
     </div>
   );
