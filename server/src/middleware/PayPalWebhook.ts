@@ -4,15 +4,15 @@ import crc32 from "buffer-crc32";
 import fs from "fs/promises";
 
 export const webhookHandler = async (request: Request, response: Response) => {
-  console.log("webhookHandler");
+  // console.log("webhookHandler");
   
   const headers = request.headers;
   const event = JSON.stringify(request.body);
   const data = request.body;
 
-  console.log(`headers`, headers);
-  console.log(`parsed json`, JSON.stringify(data, null, 2));
-  console.log(`raw event: ${event}`);
+  // console.log(`headers`, headers);
+  // console.log(`parsed json`, JSON.stringify(data, null, 2));
+  // console.log(`raw event: ${event}`);
 
   const isSignatureValid = await verifySignature(event, headers);
 
@@ -20,10 +20,10 @@ export const webhookHandler = async (request: Request, response: Response) => {
     console.log('Signature is valid.');
 
     // Successful receipt of webhook, do something with the webhook data here to process it, e.g. write to database
-    console.log(`Received event`, JSON.stringify(data, null, 2));
+    // console.log(`Received event`, JSON.stringify(data, null, 2));
 
   } else {
-    console.log(`Signature is not valid for ${data?.id} ${headers?.['correlation-id']}`);
+    // console.log(`Signature is not valid for ${data?.id} ${headers?.['correlation-id']}`);
     // Reject processing the webhook event. May wish to log all headers+data for debug purposes.
     response.status(400).send('Signature is not valid');
   }
@@ -39,7 +39,7 @@ async function verifySignature(event: any, headers: any) {
   const crc = parseInt("0x" + crc32(event).toString('hex')); // hex crc32 of raw event data, parsed to decimal form
 
   const message = `${transmissionId}|${timeStamp}|${process.env.PAYPAL_WEBHOOK_ID}|${crc}`
-  console.log(`Original signed message ${message}`);
+  // console.log(`Original signed message ${message}`);
 
   const certPem = await downloadAndCache(headers['paypal-cert-url'], 'cert.pem');
 
@@ -60,14 +60,12 @@ async function downloadAndCache(url: string, cacheKey?: string) {
     cacheKey = url.replace(/\W+/g, '-')
   }
   const filePath = `${'./'}/${cacheKey}`;
-  console.log(`Downloading ${url} to ${filePath}`);
   
   // Check if cached file exists
   const cachedData = await fs.readFile(filePath, 'utf-8').catch(() => null);
   if (cachedData) {
     return cachedData;
   }
-  console.log(`Cached file not found: ${filePath}`);
   
 
   // Download the file if not cached

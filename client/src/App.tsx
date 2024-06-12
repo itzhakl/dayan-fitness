@@ -44,9 +44,9 @@ const App = () => {
   return (
     <div className='max-w-svw min-h-svh bg-gradient-to-r from-green-400 to-blue-500'>
       <Suspense fallback={<LoadingSpinner />}>
-        {/* <Navbar /> */}
-        {/* {renderPage()} */}
-        <PayPal totalMoney='10'/>
+        <Navbar />
+        {renderPage()}
+        {/* <PayPal totalMoney='10'/> */}
       </Suspense>
     </div>
   );

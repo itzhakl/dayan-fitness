@@ -75,7 +75,7 @@ export const botAccess = async (req: Request, res: Response) => {
 };
 export const completePurchaseController = async (req: Request, res: Response) => {
   try {
-    // await completePurchaseService(req.body);
+    await completePurchaseService(req.body);
     res.status(200).send({ message: 'User registration successful' });
   } catch (error) {
     if (error instanceof Error) {

@@ -149,7 +149,6 @@ export const completePurchaseService = async (body: {userDetails: UserFromClient
     const { paypalOrderDetails: { orderID }, userDetails } = body;
     const verifyPayment = await paymentVerification(orderID);
     const order = await getOrderDetails(orderID);
-    console.log({ order });
     
     if (verifyPayment) {
       if (!userDetails || !userDetails.firstName || !userDetails.lastName || !userDetails.phoneNumber || !userDetails.email || !userDetails.userSignature || !userDetails.planPrice || !userDetails.planDuration) {
@@ -157,7 +156,8 @@ export const completePurchaseService = async (body: {userDetails: UserFromClient
         throw new Error("Missing required fields");
       }
       const userToRegist = createUserToRegist(userDetails);
-      await saveUserRegistrationDetailsDal(userToRegist);
+      
+      // await saveUserRegistrationDetailsDal(userToRegist);
     } else {
       throw new Error(
         "Something went wrong while verifying the payment. Please try again later."
