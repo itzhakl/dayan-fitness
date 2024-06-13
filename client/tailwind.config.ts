@@ -13,16 +13,10 @@ export default {
         'strong-highlight': '#FF7700',
         'primary-text': '#FCFCFC',
         'secondary-text': '#00316280',
-        accent: '#2FA757'
+        accent: '#2FA757',
       },
-      backgroundImage: (theme) => ({
-        'gradient-yellowred':
-          'linear-gradient(90deg, #FF616A 0%, #FFC837 100%)',
-        'mobile-home': "url('./assets/HomePageGraphic.png')",
-      }),
       fontFamily: {
-        dmsans: ['DM Sans', 'sans-serif'],
-        montserrat: ['Montserrat', 'sans-serif'],
+        myfont: ['myfont', 'sans-serif'],
       },
       content: {
         evolvetext: "url('./assets/images/EvolveText.png')",

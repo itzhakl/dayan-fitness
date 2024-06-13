@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
+import './styles/font.css';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 
 const initialOptions = {

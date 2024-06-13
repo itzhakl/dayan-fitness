@@ -1,0 +1,47 @@
+@font-face {
+  font-family: 'MyFont';
+  font-weight: 100; /* Ultra Light */
+  src: url('../assets/fonts/ploni-ultralight-aaa.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'MyFont';
+  font-weight: 200; /* Light */
+  src: url('../assets/fonts/ploni-light-aaa.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'MyFont';
+  font-weight: 400; /* Regular */
+  src: url('../assets/fonts/ploni-regular-aaa.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'MyFont';
+  font-weight: 500; /* Medium */
+  src: url('../assets/fonts/ploni-medium-aaa.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'MyFont';
+  font-weight: 600; /* Demi Bold */
+  src: url('../assets/fonts/ploni-demibold-aaa.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'MyFont';
+  font-weight: 700; /* Bold */
+  src: url('../assets/fonts/ploni-bold-aaa.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'MyFont';
+  font-weight: 800; /* Ultra Bold */
+  src: url('../assets/fonts/ploni-ultrabold-aaa.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'MyFont';
+  font-weight: 900; /* Black */
+  src: url('../assets/fonts/ploni-black-aaa.woff2') format('woff2');
+}
