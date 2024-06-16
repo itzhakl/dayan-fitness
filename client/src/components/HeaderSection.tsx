@@ -6,118 +6,67 @@ import logo from '../assets/svgs/logo.svg';
 
 type Props = {
   onTryClick: () => void;
+  onLearnMoreClick: () => void;
+  onJoinNowClick: () => void;
 };
 
-const HeaderSection: React.FC<Props> = ({ onTryClick }: Props) => {
+const TRY_CLICK = 'תן לי לנסות את כושר-בוט';
+const MAIN_TEXT = 'איך לעצב את הבטן ב-90 דקות ביום מבלי לשנות את התזונה?';
+const I_WANT_TO_TRY = 'אני רוצה לנסות!';
+const TELL_ME_ABOUT = 'ספר לי על כושר-בוט';
+const GET_TO_KNOW = 'הכירו את כושר-בוט!';
+const GET_TO_KNOW_TEXT = 'כושר-בוט הוא בוט וואצאפ שישלח לך את כל פרטי האימון יישירות לוואצאפ באופן יומיומי בלי צורך לצאת מהבית או לשלם אלפי שקלים למאמיני כושר. ';
+
+const HeaderSection: React.FC<Props> = ({ onTryClick, onLearnMoreClick, onJoinNowClick }: Props) => {
   return (
     <section className="relative top-0 w-full">
-      {/* <div className="grid grid-cols-5 grid-rows-8 gap-4">
-        <div className="col-span-2">
-          <img
-            loading="lazy"
-            src={imageLogo}
-            className="aspect-[4] w-[205px] max-w-full shrink-0"
-          />
-        </div>
-        <div className="col-span-2 col-start-4">
-          <button
-            onClick={onTryClick}
-            className="justify-center self-start rounded-3xl bg-sky-950 px-7 py-3 text-primary-text max-md:px-5"
-          >
-            תן לי לנסות את כושר-בוט
-          </button>
-        </div>
-        <div className="col-span-3 row-span-3 row-start-2">
-          <p className="left-0 top-0 font-myfont text-[7.5rem] font-bold leading-[120px] tracking-[0] text-secondary">
-            איך לעצב את הבטן ב-90 דקות ביום מבלי לשנות את התזונה?
-          </p>
-        </div>
-        <div className="col-start-1 row-start-5">
-          <div className="rounded-3xl bg-secondary">
-            <p className="font-myfont text-4xl font-medium leading-[normal] tracking-[0] text-primary-text">
-              אני רוצה לנסות!
-            </p>
-          </div>
-        </div>
-        <div className="col-start-2 row-start-5">
-          <div className="rounded-3xl bg-highlight">
-            <p className="font-myfont text-4xl font-medium leading-[normal] tracking-[0] text-secondary">
-              ספר לי על כושר-בוט
-            </p>
-          </div>
-        </div>
-        <div className="col-span-2 col-start-4 row-span-5 row-start-2">
-          <div className="relative flex items-center justify-center">
-            <img
-              className="-top-19 absolute -right-20"
-              alt="man with food"
-              src={image1}
-            />
-            <img className="w-full object-cover" alt="logo svg" src={logo} />
-          </div>
-        </div>
-        <div className="col-span-3 row-span-2 row-start-7">
-          <div className="text-secondary">
-            <p className="font-bold">הכירו את כושר-בוט!</p>
-            <p className="font-normal">
-              כושר-בוט הוא בוט וואצאפ שישלח לך את כל פרטי האימון יישירות לוואצאפ
-              באופן יומיומי בלי צורך לצאת מהבית או לשלם אלפי שקלים למאמיני כושר.
-            </p>
-          </div>
-        </div>
-      </div> */}
-
       <img
         className="absolute inset-0 -z-10 w-full bg-center object-cover"
         alt="svgvector"
         src={vector1}
       />
-      <div className="relative flex justify-between gap-5 p-[1rem] text-right text-4xl font-medium text-primary max-md:max-w-full max-md:flex-wrap">
-        <img
-          loading="lazy"
-          src={imageLogo}
-          className="aspect-[4] w-[205px] max-w-full shrink-0"
-        />
-        <button
-          onClick={onTryClick}
-          className="justify-center self-start rounded-3xl bg-sky-950 px-7 py-3 text-primary-text max-md:px-5"
-        >
-          תן לי לנסות את כושר-בוט
-        </button>
-      </div>
-      <div className="flex">
-        <div className="flex w-3/5 flex-col items-start">
-          <p className="left-0 top-0 font-myfont text-[7.5rem] font-bold leading-[120px] tracking-[0] text-secondary">
-            איך לעצב את הבטן ב-90 דקות ביום מבלי לשנות את התזונה?
-          </p>
-          <div className="flex justify-center gap-5">
-            <div className="rounded-3xl bg-secondary">
-              <p className="font-myfont text-4xl font-medium leading-[normal] tracking-[0] text-primary-text">
-                אני רוצה לנסות!
-              </p>
-            </div>
-            <div className="rounded-3xl bg-highlight">
-              <p className="font-myfont text-4xl font-medium leading-[normal] tracking-[0] text-secondary">
-                ספר לי על כושר-בוט
-              </p>
+      <div className="p-8">
+        <div className="relative flex w-full justify-between text-right text-xl font-medium text-primary">
+          <img
+            loading="lazy"
+            src={imageLogo}
+            className="aspect-[4] h-9 shrink-0"
+          />
+          <button
+            onClick={onTryClick}
+            className="rounded-3xl bg-secondary text-2xl pt-1 px-3 text-primary-text"
+          >{TRY_CLICK}
+          </button>
+        </div>
+        <div className="flex pt-16">
+          <div className="flex w-3/5 flex-col items-start pt-8">
+            <p className="font-myfont text-[5rem] font-bold text-secondary leading-[5rem]">
+              {MAIN_TEXT}
+            </p>
+            <div className="flex justify-center pt-4 gap-5">
+              <button onClick={onJoinNowClick} className="rounded-3xl bg-secondary font-myfont px-5 py-1 text-2xl font-medium leading-[normal] tracking-[0] text-primary-text">
+                {I_WANT_TO_TRY}
+              </button>
+              <button onClick={onLearnMoreClick} className="rounded-3xl bg-highlight font-myfont px-5 py-1 text-2xl font-medium leading-[normal] tracking-[0] text-secondary">
+                {TELL_ME_ABOUT}
+              </button>
             </div>
           </div>
+          <div className="relative pt-20 w-2/5 flex items-center justify-center">
+            <img
+              className="-top-19 h-[100vh] absolute -right-12"
+              alt="man with food"
+              src={image1}
+            />
+            <img className="object-cover w-80" alt="logo svg" src={logo} />
+          </div>
         </div>
-        <div className="relative flex items-center justify-center">
-          <img
-            className="-top-19 absolute -right-20"
-            alt="man with food"
-            src={image1}
-          />
-          <img className="w-full object-cover" alt="logo svg" src={logo} />
+        <div className="text-secondary pt-36 w-[45vw]">
+          <p className="font-bold leading-[4rem] text-5xl">{GET_TO_KNOW}</p>
+          <p className="font-normal leading-[2rem] text-2xl">
+            {GET_TO_KNOW_TEXT}
+          </p>
         </div>
-      </div>
-      <div className="text-secondary">
-        <p className="font-bold">הכירו את כושר-בוט!</p>
-        <p className="font-normal">
-          כושר-בוט הוא בוט וואצאפ שישלח לך את כל פרטי האימון יישירות לוואצאפ
-          באופן יומיומי בלי צורך לצאת מהבית או לשלם אלפי שקלים למאמיני כושר.
-        </p>
       </div>
     </section>
   );

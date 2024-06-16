@@ -31,14 +31,14 @@ const HomePage: React.FC = () => {
 
   return (
     <MainLayout>
-      <HeaderSection onTryClick={handleTryClick} />
+      <HeaderSection onTryClick={handleTryClick} onLearnMoreClick={handleLearnMoreClick} onJoinNowClick={handleJoinNowClick} />
       {/* <IntroSection
         onLearnMoreClick={handleLearnMoreClick}
         onJoinNowClick={handleJoinNowClick}
-      />
-      <FeatureSection />
+      /> */}
+      {/* <FeatureSection /> */}
       <CTASection onSubscribeClick={handleSubscribeClick} />
-      <VideoPreviewSection />
+      {/* <VideoPreviewSection />
       <FooterSection onContactFormSubmit={handleContactFormSubmit} /> */}
     </MainLayout>
   );
