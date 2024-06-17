@@ -6,6 +6,7 @@ import FeatureSection from '../components/FeatureSection';
 import CTASection from '../components/CTASection';
 import VideoPreviewSection from '../components/VideoPreviewSection';
 import FooterSection from '../components/FooterSection';
+import MainContent from '@/components/MainContent';
 
 const HomePage: React.FC = () => {
   const handleTryClick = () => {
@@ -32,12 +33,13 @@ const HomePage: React.FC = () => {
   return (
     <MainLayout>
       <HeaderSection onTryClick={handleTryClick} onLearnMoreClick={handleLearnMoreClick} onJoinNowClick={handleJoinNowClick} />
+      <MainContent />
       {/* <IntroSection
         onLearnMoreClick={handleLearnMoreClick}
         onJoinNowClick={handleJoinNowClick}
       /> */}
       {/* <FeatureSection /> */}
-      <CTASection onSubscribeClick={handleSubscribeClick} />
+      {/* <CTASection onSubscribeClick={handleSubscribeClick} /> */}
       {/* <VideoPreviewSection />
       <FooterSection onContactFormSubmit={handleContactFormSubmit} /> */}
     </MainLayout>

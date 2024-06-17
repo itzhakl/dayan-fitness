@@ -19,9 +19,9 @@ const GET_TO_KNOW_TEXT = 'כושר-בוט הוא בוט וואצאפ שישלח 
 
 const HeaderSection: React.FC<Props> = ({ onTryClick, onLearnMoreClick, onJoinNowClick }: Props) => {
   return (
-    <section className="relative top-0 w-full">
+    <section className="relative h-[120vh] top-0 w-full">
       <img
-        className="absolute inset-0 -z-10 w-full bg-center object-cover"
+        className="absolute inset-0 w-fit h-full -z-10 object-cover"
         alt="svgvector"
         src={vector1}
       />

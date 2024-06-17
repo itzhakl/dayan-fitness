@@ -1,35 +1,79 @@
 import React from 'react';
 
+type InfoBoxProps = {
+  text: string;
+  extraClasses?: string;
+};
+
+const InfoBox: React.FC<InfoBoxProps> = ({ text, extraClasses }) => {
+  return (
+    <div
+      className={`rounded-[45px] bg-zinc-50 px-6 py-11 text-right text-4xl font-medium text-sky-950 shadow-lg ${extraClasses}`}
+    >
+      {text}
+    </div>
+  );
+};
+
+type TextContentProps = Array<{
+  id: number;
+  text: string;
+  extraClasses?: string;
+}>;
+
+const textContents: TextContentProps = [
+  {
+    id: 1,
+    text: 'בלי צורך לצאת מהבית!',
+    extraClasses: 'self-start mt-16 ml-24',
+  },
+  {
+    id: 2,
+    text: 'המעטפת היחידה בארץ שתגרום לכם לראות תוצאות',
+    extraClasses: 'self-end mt-8 px-12 py-12',
+  },
+  { id: 3, text: 'הדרכה על ידי מאמן כושר מוסמך ומנוסה', extraClasses: '' },
+  { id: 4, text: 'בלי לשלם אלפי שקלים למאמנים', extraClasses: '' },
+];
+
 const MainContent: React.FC = () => {
   return (
-    <>
-      <div className="relative mt-40 self-end text-right text-7xl font-bold leading-[72px] text-sky-950 max-md:mt-10 max-md:max-w-full max-md:text-4xl">
-        {' '}
-        הכירו את כושר-בוט!
-      </div>
-      <div className="z-10 mt-3 flex w-full max-w-[1638px] flex-col max-md:max-w-full">
-        <div className="w-[855px] self-end text-right text-4xl text-sky-950 max-md:max-w-full">
-          {' '}
-          כושר-בוט הוא בוט וואצאפ שישלח לך את כל פרטי האימון יישירות לוואצאפ
-          באופן יומיומי בלי צורך לצאת מהבית או לשלם אלפי שקלים למאמיני כושר.
+    <section className="flex flex-col items-center bg-white py-20">
+      <header className="mt-28 text-right text-7xl font-bold leading-[72px] text-sky-950 max-md:mt-10 max-md:max-w-full max-md:text-4xl">
+        למה דווקא כושר-בוט?
+      </header>
+      {textContents.slice(0, 2).map((content) => (
+        <InfoBox
+          key={content.id}
+          text={content.text}
+          extraClasses={content.extraClasses}
+        />
+      ))}
+      <div className="z-10 mt-0 w-full max-w-[1516px] px-5 max-md:max-w-full">
+        <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+          {textContents.slice(2).map((content) => (
+            <div
+              key={content.id}
+              className="flex w-[29%] flex-col max-md:ml-0 max-md:w-full"
+            >
+              <InfoBox
+                text={content.text}
+                extraClasses={content.extraClasses}
+              />
+            </div>
+          ))}
+          <div className="ml-5 flex w-[44%] flex-col max-md:ml-0 max-md:w-full">
+            <img
+              loading="lazy"
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/4bed8070183bbad3f72af84e3608592623ca43e6c9495e42de68d2cf1bf6fc7a?apiKey=914036782bbf484995add4b780ae9c38&"
+              alt=""
+              className="aspect-[0.65] w-full grow max-md:mt-10 max-md:max-w-full"
+            />
+          </div>
         </div>
       </div>
-      <div className="mt-80 self-center text-right text-7xl font-bold leading-[72px] text-sky-950 max-md:mt-10 max-md:max-w-full max-md:text-4xl">
-        {' '}
-        למה דווקא כושר-בוט?
-      </div>
-      <div className="mt-16 flex w-[1237px] max-w-full items-start justify-between gap-5 self-center text-right text-4xl text-sky-950 max-md:mt-10 max-md:flex-wrap">
-        <button className="justify-center self-start rounded-[45px] bg-zinc-50 px-10 py-11 font-medium shadow-lg max-md:px-5">
-          בלי צורך לצאת מהבית!
-        </button>
-        <button className="mt-8 justify-center self-end rounded-[45px] bg-zinc-50 px-10 py-12 shadow-lg max-md:max-w-full max-md:px-5">
-          המעטפת היחידה בארץ שתגרום לכם לראות תוצאות
-        </button>
-      </div>
-      <div className="text-4xl font-bold leading-9 max-md:max-w-full">
-        אני רוצה לנסות את כושר-בוט
-      </div>
-    </>
+      <footer className="min-h-[153px] w-full self-stretch bg-sky-950 max-md:max-w-full"></footer>
+    </section>
   );
 };
 
