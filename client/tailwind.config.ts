@@ -18,6 +18,10 @@ export default {
       fontFamily: {
         myfont: ['myfont', 'sans-serif'],
       },
+      backgroundImage: {
+        'mobile-bg': "url('./assets/svgs/header-bg-mobile.svg')",
+        'desktop-bg': "url('./assets/svgs/header-bg-desktop.svg')",
+      },
       content: {
         evolvetext: "url('./assets/images/EvolveText.png')",
         abstractwaves: "url('./assets/images/AbstractWaves.png')",
