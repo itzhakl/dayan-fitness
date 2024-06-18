@@ -1,5 +1,4 @@
 import React from 'react';
-import vector1 from '../assets/svgs/vector1.svg';
 import imageLogo from '../assets/images/imageLogo.png';
 import image1 from '../assets/images/image1.png';
 import logo from '../assets/svgs/logo.svg';
@@ -19,13 +18,8 @@ const GET_TO_KNOW_TEXT = 'כושר-בוט הוא בוט וואצאפ שישלח 
 
 const HeaderSection: React.FC<Props> = ({ onTryClick, onLearnMoreClick, onJoinNowClick }: Props) => {
   return (
-    <section className="relative h-[120vh] top-0 w-full">
-      <img
-        className="absolute inset-0 w-fit h-full -z-10 object-cover"
-        alt="svgvector"
-        src={vector1}
-      />
-      <div className="p-8">
+    <section className="relative top-0 w-full">
+      <div className="h-fit w-full bg-mobile-bg lg:bg-desktop-bg bg-cover bg-center p-3 lg:p-8">
         <div className="relative flex w-full justify-between text-right text-xl font-medium text-primary">
           <img
             loading="lazy"
@@ -34,39 +28,48 @@ const HeaderSection: React.FC<Props> = ({ onTryClick, onLearnMoreClick, onJoinNo
           />
           <button
             onClick={onTryClick}
-            className="rounded-3xl bg-secondary text-2xl pt-1 px-3 text-primary-text"
-          >{TRY_CLICK}
+            className="rounded-3xl bg-secondary px-3 pt-1 text-sm text-primary-text lg:text-2xl"
+          >
+            {TRY_CLICK}
           </button>
         </div>
-        <div className="flex pt-16">
-          <div className="flex w-3/5 flex-col items-start pt-8">
-            <p className="font-myfont text-[5rem] font-bold text-secondary leading-[5rem]">
+        <div className="flex flex-col pt-10 lg:flex-row lg:pt-16">
+          <div className="flex flex-col items-start p-3 pt-8 lg:w-3/5">
+            <p className="font-myfont text-5xl font-bold text-secondary lg:text-[5rem] lg:leading-[5rem]">
               {MAIN_TEXT}
             </p>
-            <div className="flex justify-center pt-4 gap-5">
-              <button onClick={onJoinNowClick} className="rounded-3xl bg-secondary font-myfont px-5 py-1 text-2xl font-medium leading-[normal] tracking-[0] text-primary-text">
+            <div className="flex flex-col justify-center gap-5 pt-4 lg:flex-row">
+              <button
+                onClick={onJoinNowClick}
+                className="rounded-3xl bg-secondary px-5 py-1 font-myfont font-medium leading-[normal] tracking-[0] text-primary-text lg:text-2xl"
+              >
                 {I_WANT_TO_TRY}
               </button>
-              <button onClick={onLearnMoreClick} className="rounded-3xl bg-highlight font-myfont px-5 py-1 text-2xl font-medium leading-[normal] tracking-[0] text-secondary">
+              <button
+                onClick={onLearnMoreClick}
+                className="rounded-3xl bg-highlight px-5 py-1 font-myfont font-medium leading-[normal] tracking-[0] text-secondary lg:text-2xl"
+              >
                 {TELL_ME_ABOUT}
               </button>
             </div>
           </div>
-          <div className="relative pt-20 w-2/5 flex items-center justify-center">
+          <div className="relative flex w-1/2 -left-3 h-[60vh] items-center justify-center self-end lg:pt-20">
             <img
-              className="-top-19 h-[100vh] absolute -right-12"
+              className="lg:-top-19 h-5/6 absolute z-10 -right-12 lg:h-[100vh]"
               alt="man with food"
               src={image1}
             />
-            <img className="object-cover w-80" alt="logo svg" src={logo} />
+            <img className="absolute h-full lg:w-80" alt="logo svg" src={logo} />
           </div>
         </div>
-        <div className="text-secondary pt-36 w-[45vw]">
-          <p className="font-bold leading-[4rem] text-5xl">{GET_TO_KNOW}</p>
-          <p className="font-normal leading-[2rem] text-2xl">
-            {GET_TO_KNOW_TEXT}
-          </p>
-        </div>
+      </div>
+      <div className="p-4 pt-36 text-center text-secondary lg:w-[45vw] lg:text-right">
+        <p className="text-2xl font-bold leading-[4rem] lg:text-5xl">
+          {GET_TO_KNOW}
+        </p>
+        <p className="font-normal leading-[2rem] lg:text-2xl">
+          {GET_TO_KNOW_TEXT}
+        </p>
       </div>
     </section>
   );
