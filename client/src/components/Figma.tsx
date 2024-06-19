@@ -1,12 +1,12 @@
 import React from 'react'
-import vector1 from '../assets/svgs/vector1.svg';
+// import vector1 from '../assets/svgs/vector1.svg';
 
 type Props = {}
 
 const Figma = (props: Props) => {
   return (
     <div className=''>
-      <img className='absolute inset-0 w-full bg-center object-cover -z-10' alt='svgvector' src={vector1}/>
+      {/* <img className='absolute inset-0 w-full bg-center object-cover -z-10' alt='svgvector' src={vector1}/> */}
       <p className="font-myfont text-xl font-thin">Ultra Light Text</p>
       <p className="font-myfont text-xl font-extralight">Light Text</p>
       <p className="font-myfont text-xl font-black">Black Text</p>
