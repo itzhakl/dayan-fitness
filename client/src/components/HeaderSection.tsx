@@ -19,7 +19,7 @@ const GET_TO_KNOW_TEXT = 'כושר-בוט הוא בוט וואצאפ שישלח 
 const HeaderSection: React.FC<Props> = ({ onTryClick, onLearnMoreClick, onJoinNowClick }: Props) => {
   return (
     <section className="relative top-0 w-full">
-      <div className="h-fit w-full bg-mobile-bg lg:bg-desktop-bg bg-cover bg-center p-3 lg:p-8">
+      <div className="w-full bg-mobile-bg bg-cover bg-center p-3 lg:bg-desktop-bg lg:p-8">
         <div className="relative flex w-full justify-between text-right text-xl font-medium text-primary">
           <img
             loading="lazy"
@@ -53,13 +53,23 @@ const HeaderSection: React.FC<Props> = ({ onTryClick, onLearnMoreClick, onJoinNo
               </button>
             </div>
           </div>
-          <div className="relative flex w-1/2 -left-3 h-[60vh] items-center justify-center self-end lg:pt-20">
+          <div
+            // style={{ clipPath: 'inset(0 0 0 15%)' }}
+            className="relative -left-3 flex h-[40vh] w-2/3 items-center justify-end self-end overflow-visible pb-28 lg:pt-20"
+          >
             <img
-              className="lg:-top-19 h-5/6 absolute z-10 -right-12 lg:h-[100vh]"
+              className="lg:-top-19 absolute -right-8 z-10 w-[200px]" // increased width to 150%
               alt="man with food"
               src={image1}
             />
-            <img className="absolute h-full lg:w-80" alt="logo svg" src={logo} />
+            <div className="absolute overflow-hidden">
+              <img
+                className="inset-y-0 left-0 h-full object-cover w-[200%]"
+                alt="logo svg"
+                src={logo}
+                // style={{ clipPath: 'inset(0 0 0 15%)' }} // CSS property to clip the left third
+              />
+            </div>
           </div>
         </div>
       </div>
