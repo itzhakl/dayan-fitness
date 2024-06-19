@@ -6,6 +6,7 @@ import Navbar from './components/NavBar';
 import LoadingSpinner from './Pages/LoadingSpinner';
 import PayPal from './components/PayPal';
 import HeaderSection from './components/HeaderSection';
+import MainContent from './components/MainContent';
 
 const Home = React.lazy(() => import('./Pages/Home'));
 
@@ -35,12 +36,13 @@ const App = () => {
   };
 
   return (
-    <div className="font-myfont bg-white">
+    <div className="font-myfont">
       <HeaderSection
         onTryClick={handleTryClick}
         onLearnMoreClick={handleLearnMoreClick}
         onJoinNowClick={handleJoinNowClick}
       />
+      <MainContent/>
     </div>
   );
 };

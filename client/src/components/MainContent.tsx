@@ -8,7 +8,7 @@ type InfoBoxProps = {
 const InfoBox: React.FC<InfoBoxProps> = ({ text, extraClasses }) => {
   return (
     <div
-      className={`rounded-[45px] bg-zinc-50 px-6 py-11 text-right text-4xl font-medium text-sky-950 shadow-lg ${extraClasses}`}
+      className={`rounded-[45px] bg-zinc-50 px-6 py-11 text-right text-4xl font-medium text-sky-950 shadow-xl ${extraClasses}`}
     >
       {text}
     </div>
@@ -20,6 +20,8 @@ type TextContentProps = Array<{
   text: string;
   extraClasses?: string;
 }>;
+
+const Title = 'למה דווקא כושר-בוט?';
 
 const textContents: TextContentProps = [
   {
@@ -39,37 +41,34 @@ const textContents: TextContentProps = [
 const MainContent: React.FC = () => {
   return (
     <section className="flex flex-col items-center bg-white py-20">
-      <header className="mt-28 text-right text-7xl font-bold leading-[72px] text-sky-950 max-md:mt-10 max-md:max-w-full max-md:text-4xl">
-        למה דווקא כושר-בוט?
+      <header className="text-center text-3xl font-bold leading-[72px] text-secondary">
+        {Title}
       </header>
-      {textContents.slice(0, 2).map((content) => (
-        <InfoBox
-          key={content.id}
-          text={content.text}
-          extraClasses={content.extraClasses}
-        />
-      ))}
       <div className="z-10 mt-0 w-full max-w-[1516px] px-5 max-md:max-w-full">
-        <div className="flex gap-5 max-md:flex-col max-md:gap-0">
-          {textContents.slice(2).map((content) => (
+        <div className="flex flex-col space-y-4">
+          {textContents.map((content, index) => (
             <div
               key={content.id}
-              className="flex w-[29%] flex-col max-md:ml-0 max-md:w-full"
+              className={`p-4 ${
+                index % 2 === 0 ? 'self-end' : 'self-start'
+              } rounded-3xl text-center text-xl font-medium text-secondary shadow-xl ${content.extraClasses}`}
+              // className="flex w-[29%] flex-col max-md:ml-0 max-md:w-full"
             >
-              <InfoBox
+              {content.text}
+              {/* <InfoBox
                 text={content.text}
                 extraClasses={content.extraClasses}
-              />
+              /> */}
             </div>
           ))}
-          <div className="ml-5 flex w-[44%] flex-col max-md:ml-0 max-md:w-full">
-            <img
-              loading="lazy"
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/4bed8070183bbad3f72af84e3608592623ca43e6c9495e42de68d2cf1bf6fc7a?apiKey=914036782bbf484995add4b780ae9c38&"
-              alt=""
-              className="aspect-[0.65] w-full grow max-md:mt-10 max-md:max-w-full"
-            />
-          </div>
+        </div>
+        <div className="ml-5 flex w-[44%] flex-col max-md:ml-0 max-md:w-full">
+          <img
+            loading="lazy"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/4bed8070183bbad3f72af84e3608592623ca43e6c9495e42de68d2cf1bf6fc7a?apiKey=914036782bbf484995add4b780ae9c38&"
+            alt=""
+            className="aspect-[0.65] w-full grow max-md:mt-10 max-md:max-w-full"
+          />
         </div>
       </div>
       <footer className="min-h-[153px] w-full self-stretch bg-sky-950 max-md:max-w-full"></footer>
