@@ -14,18 +14,25 @@ const advanced_text = 'כושר-בוט למתקדמים';
 const TrainingPrograms: React.FC<Props> = ({ purchasingSubscriptionForBeginners, purchasingSubscriptionForAdvanced }) => {
     return (
         <section className="relative top-0 w-full">
-            <div className="flex flex-col w-full h-[800px] p-10 items-center">
-                <p className="font-myfont text-3xl md:text-5xl text-center font-bold text-secondary mb-12">
+            <div className="flex flex-col w-full h-[800px] p-7 items-center">
+                <p className="font-myfont text-3xl md:text-5xl text-center font-bold text-secondary mb-12 mt-6">
                     {trainingPrograms}
                 </p>
                 <div className='flex flex-wrap w-[95%] items-center justify-center'>
-                    <TrainingCard title={beginners_text} onClick={purchasingSubscriptionForBeginners} toggle />
+                    <TrainingCard
+                        title={beginners_text}
+                        onClick={purchasingSubscriptionForBeginners}
+                        toggle
+                    />
                     <img
                         className="hidden lg:flex w-[370px]"
                         alt="is strong man"
                         src={image3}
                     />
-                    <TrainingCard title={advanced_text} onClick={purchasingSubscriptionForAdvanced}/>
+                    <TrainingCard
+                        title={advanced_text}
+                        onClick={purchasingSubscriptionForAdvanced}
+                    />
                 </div>
             </div>
         </section>

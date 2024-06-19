@@ -4,6 +4,7 @@ import V_green from '../../assets/svgs/V-green.svg';
 
 
 const instructionalVideoEveryDay_text = 'סירטון הדרכה בכל יום.';
+const buyingButton = 'אני רוצה לרכוש מנוי לכושר-בוט';
 
 type TrainingCardProps = {
     toggle?: boolean;
@@ -15,7 +16,7 @@ const TrainingCard: React.FC<TrainingCardProps> = ({ toggle, title, onClick }) =
     const repetitions = 10;
 
     return (
-        <div className='flex flex-col w-[350px] mb-12 mx-4 xl:mx-0 items-center rounded-3xl bg-primary p-5'>
+        <div className='flex flex-col w-[350px] mb-12 mx-3 xl:mx-0 items-center rounded-3xl bg-primary p-5'>
             <div className='flex flex-col'>
                 <p className="text-2xl font-bold text-secondary my-4">{title}</p>
                 {Array.from({ length: repetitions }, (_, index) => {
@@ -32,7 +33,7 @@ const TrainingCard: React.FC<TrainingCardProps> = ({ toggle, title, onClick }) =
                     )
                 })}
             </div>
-            <button className={`mt-14 px-4 py-2 w-[80%] ${toggle ? 'bg-secondary':'bg-strong-highlight'} text-white rounded-full`} onClick={onClick}>קנה עכשיו</button>
+            <button className={`mt-14 px-4 py-2 w-[230px] ${toggle ? 'bg-secondary':'bg-strong-highlight'} text-white rounded-full`} onClick={onClick}>{buyingButton}</button>
         </div>
     );
 }
